@@ -1,0 +1,7 @@
+build/
+*.log
+robot_output.xml
+log.html
+report.html
+snapshots/
+__pycache__/

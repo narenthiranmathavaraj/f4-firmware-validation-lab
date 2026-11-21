@@ -1,0 +1,18 @@
+:name: f4-bringup
+:description: Interactive run of the bring-up firmware on an STM32F4 (Cortex-M4) + devices
+
+mach create "f4-bringup"
+machine LoadPlatformDescription @platform/f4_bringup.repl
+sysbus LoadELF @build/f4-bringup.elf
+sysbus.cpu VectorTableOffset 0x08000000
+
+showAnalyzer sysbus.usart2
+machine StartGdbServer 3333
+
+# Bus-level tracing (uncomment while debugging a driver):
+# logLevel -1 sysbus.i2c1
+# logLevel -1 sysbus.spi1
+# sysbus LogPeripheralAccess sysbus.i2c1 true
+# sysbus LogPeripheralAccess sysbus.spi1 true
+
+start

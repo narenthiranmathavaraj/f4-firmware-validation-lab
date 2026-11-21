@@ -1,0 +1,19 @@
+/* Memory map as modelled by Renode's stm32f4 platform (STM32F407-like: 1 MB flash, 128 KB used SRAM) */
+MEMORY
+{
+    FLASH (rx)  : ORIGIN = 0x08000000, LENGTH = 1M
+    RAM   (rwx) : ORIGIN = 0x20000000, LENGTH = 128K
+}
+
+ENTRY(Reset_Handler)
+_estack = ORIGIN(RAM) + LENGTH(RAM);
+
+SECTIONS
+{
+    .isr_vector : { KEEP(*(.isr_vector)) } > FLASH
+    .text       : { *(.text*) *(.rodata*) . = ALIGN(4); } > FLASH
+
+    _sidata = LOADADDR(.data);
+    .data : { _sdata = .; *(.data*) . = ALIGN(4); _edata = .; } > RAM AT> FLASH
+    .bss  : { _sbss = .; *(.bss*) *(COMMON) . = ALIGN(4); _ebss = .; } > RAM
+}

@@ -1,0 +1,59 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/docker-existing-dockerfile
+{
+	"name": "f4-bringup",
+	"build": {
+		"context": "..",
+		"dockerfile": "../Dockerfile"
+	},
+"customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode.cpptools",
+        "ms-python.python",
+        "ms-vscode.makefile-tools",
+        "ZixuanWang.linkerscript",
+        "davidbwaters.macos-modern-theme",
+        "maziac.hex-hover-converter",
+        "ms-vscode.hexeditor",
+        "trond-snekvik.gnu-mapfiles",
+        "joshuabernstein.armextensionhelpers"
+      ],
+      "settings": {
+        "editor.fontSize": 16,
+        "terminal.integrated.fontSize": 16,
+        "workbench.iconTheme": "vs-seti",
+        "editor.minimap.enabled": false,
+        "workbench.colorTheme": "MacOS Modern Dark - Ventura Xcode Default",
+        "workbench.preferredDarkColorTheme": "MacOS Modern Dark - Ventura Xcode Default",
+        "editor.wordWrapColumn": 120,
+        "workbench.startupEditor": "none",
+        "editor.useTabStops": false,
+        "files.trimTrailingWhitespace": true,
+        "git.autorefresh": false,
+        "terminal.integrated.cursorBlinking": true,
+        "terminal.integrated.cursorStyle": "line",
+        "debug.console.fontSize": 16,
+        "editor.rulers": [120],
+        "terminal.integrated.sendKeybindingsToShell": true,
+        "extensions.ignoreRecommendations": true,
+        "remote.autoForwardPorts": false
+      }
+    }
+  }
+
+	// Features to add to the dev container. More info: https://containers.dev/features.
+	// "features": {},
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [],
+
+	// Uncomment the next line to run commands after the container is created.
+	// "postCreateCommand": "cat /etc/os-release",
+
+	// Configure tool-specific properties.
+	// "customizations": {},
+
+	// Uncomment to connect as an existing user other than the container default. More info: https://aka.ms/dev-containers-non-root.
+	// "remoteUser": "devcontainer"
+}

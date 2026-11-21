@@ -1,0 +1,16 @@
+// MCU = STM32F4 (Cortex-M4) from Renode's stock platform + devices wired as described here.
+// This file IS the "netlist": which device sits on which bus, at which address.
+using "platforms/cpus/stm32f4.repl"
+
+// I2C1: TI TMP108 temperature sensor, 7-bit address 0x48
+tmp108: Sensors.TMP108 @ i2c1 0x48
+
+// SPI2: ST LSM6DSO IMU
+imu: Sensors.LSM6DSO_IMU @ spi2
+
+// SPI1: Micron MT25Q NOR flash, 32 MB backing memory
+spiFlash: SPI.Micron_MT25Q @ spi1
+    underlyingMemory: spiFlashMemory
+
+spiFlashMemory: Memory.MappedMemory
+    size: 0x2000000
