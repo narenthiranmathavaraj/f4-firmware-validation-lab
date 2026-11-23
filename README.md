@@ -74,3 +74,47 @@ Traces live in `docs/traces/`.
 
 Be honest: simulated peripherals, clocks not modelled, no real-board timing. Next: DMA, a Linux I2C
 client driver for the same sensor on QEMU.
+
+
+
+Full TODO
+
+Setup (day 1)
+
+[ ] Put the short devcontainer.json in place (no features block) and rebuild the container.
+[ ] make has no warnings, and make test shows smoke OK.
+[ ] Create the GitHub repo, push, and get CI green.
+[ ] Change the run line in the Makefile to renode --disable-xwt --console platform/f4_bringup.resc, since the container has no GUI.
+[ ] In the .resc, replace showAnalyzer sysbus.usart2 with sysbus.usart2 CreateFileBackend @build/uart.log true, so UART output goes to a file you can tail -f.
+
+I2C by hand (days 2–3)
+
+[ ] Read the RM0090 I2C chapter and the TMP108 datasheet.
+[ ] i2c.c: polling version of i2c_init and i2c_write_read, with bounded waits and one log line per transaction.
+[ ] tmp108.c: read the temperature, convert to milli-°C, and print the raw bytes and the decoded value.
+[ ] Switch I2C to interrupt-driven.
+[ ] tests/tmp108.robot: remove Skip and assert on the printed line.
+[ ] Fill the I2C and TMP108 rows in docs/datasheet_to_code.md.
+
+Reuse (day 4)
+
+[ ] Vendor in ST's LL SPI driver (stm32f4xx_hal_driver plus cmsis_device_f4 and the CMSIS core headers), ST's lsm6dso-pid driver, and a flash library. Pin their versions in the README.
+[ ] First check that the flash library works with Renode's MT25Q model. If it doesn't, use a thin command wrapper over the LL SPI.
+[ ] Update tests/flash.robot and confirm JEDEC and flash verify OK print.
+
+System layer (days 5–6)
+
+[ ] Bus abstraction: one bus_read / bus_write / bus_transfer over I2C and SPI, with ST's LSM6DSO driver running through it.
+[ ] Sensor service: timer-driven sampling, a small transaction queue, and optional DMA for SPI.
+[ ] Error handling: classify NACK, timeout and bus-stuck; add retry with backoff, bus recovery, and per-device health counters.
+[ ] Power: duty-cycle the sensors and use WFI between samples.
+[ ] Fault tests (tests/faults.robot): NACK, bus stuck, flash busy. The system must recover and keep running.
+[ ] Stretch: a FreeRTOS task per device with a mutex per bus.
+
+Evidence and polish (day 7)
+
+[ ] docs/protocols.md: annotated traces for I2C (START, address, ACK/NACK, repeated start), SPI modes and flash commands.
+[ ] docs/bugs.md: 2–3 real bugs with before and after traces in docs/traces/.
+[ ] README: real UART output, architecture diagram, design decisions, limitations.
+[ ] Datasheet table complete, CI badge pointing at your repo.
+[ ] Resume bullets with real numbers.

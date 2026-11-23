@@ -21,3 +21,13 @@ void log_bytes(const char *tag, const uint8_t *p, int n)
     for (int i = 0; i < n; i++) { uart_putc(' '); log_hex(p[i], 2); }
     log_str("\n");
 }
+void log_dec(int32_t v)
+{
+    char buf[11];
+    int i = 0;
+    uint32_t u = (v < 0) ? (uint32_t)(-(v + 1)) + 1u : (uint32_t)v;
+    if (v < 0) uart_putc('-');
+    if (u == 0) { uart_putc('0'); return; }
+    while (u) { buf[i++] = (char)('0' + (u % 10u)); u /= 10u; }
+    while (i) uart_putc(buf[--i]);
+}

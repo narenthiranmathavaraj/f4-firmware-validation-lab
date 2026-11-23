@@ -14,5 +14,5 @@ machine StartGdbServer 3333
 # logLevel -1 sysbus.spi1
 # sysbus LogPeripheralAccess sysbus.i2c1 true
 # sysbus LogPeripheralAccess sysbus.spi1 true
-
+sysbus.i2c1.tmp108 Temperature 25
 start

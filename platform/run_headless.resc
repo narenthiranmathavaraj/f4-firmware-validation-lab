@@ -1,0 +1,10 @@
+mach create "f4-bringup"
+machine LoadPlatformDescription @platform/f4_bringup.repl
+sysbus LoadELF @build/f4-bringup.elf
+sysbus.cpu VectorTableOffset 0x08000000
+sysbus.usart2 CreateFileBackend $CWD/build/uart.log true
+sysbus.i2c1.tmp108 Temperature 25
+start
+sleep 5
+pause
+quit

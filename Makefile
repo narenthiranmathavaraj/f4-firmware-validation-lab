@@ -29,6 +29,9 @@ build/%.o: %.c
 run: all
 	renode platform/f4_bringup.resc
 
+sim: all
+	renode --disable-xwt --plain --console platform/run_headless.resc
+	@cat build/uart.log
 # headless Robot tests
 test: all
 	renode-test tests/smoke.robot tests/tmp108.robot tests/flash.robot tests/faults.robot
