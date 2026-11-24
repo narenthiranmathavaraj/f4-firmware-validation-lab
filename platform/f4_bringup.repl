@@ -6,11 +6,7 @@ using "platforms/cpus/stm32f4.repl"
 tmp108: Sensors.TMP108 @ i2c1 0x48
 
 // SPI2: ST LSM6DSO IMU
-imu: Sensors.LSM6DSO_IMU @ spi2
-
-// SPI1: Micron MT25Q NOR flash, 32 MB backing memory
-spiFlash: SPI.Micron_MT25Q @ spi1
-    underlyingMemory: spiFlashMemory
+imu: Sensors.LSM6DSO_IMU @ spi1
 
 spiFlashMemory: Memory.MappedMemory
     size: 0x2000000

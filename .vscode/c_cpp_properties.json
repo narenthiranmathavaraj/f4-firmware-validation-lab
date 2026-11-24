@@ -1,0 +1,20 @@
+{
+  "version": 4,
+  "configurations": [
+    {
+      "name": "f4-bringup",
+      "compilerPath": "/usr/bin/arm-none-eabi-gcc",
+      "intelliSenseMode": "linux-gcc-arm",
+      "cStandard": "gnu11",
+      "defines": ["STM32F407xx"],
+      "includePath": [
+        "${workspaceFolder}/src",
+        "${workspaceFolder}/config",
+        "/opt/vendor/cmsis_core/Include",
+        "/opt/vendor/cmsis_device_f4/Include",
+        "/opt/vendor/FreeRTOS-Kernel/include",
+        "/opt/vendor/FreeRTOS-Kernel/portable/GCC/ARM_CM3"
+      ]
+    }
+  ]
+}

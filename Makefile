@@ -9,10 +9,19 @@ OBJS     = $(patsubst %.c,build/%.o,$(SRCS))
 
 # soft-float on purpose: no FPU enable sequence needed for bring-up work
 ARCH     = -mcpu=cortex-m4 -mthumb -mfloat-abi=soft
-CFLAGS   = $(ARCH) -Og -g3 -ffreestanding -fno-common -ffunction-sections -fdata-sections \
+CMSIS_CORE      ?= /opt/vendor/cmsis_core
+CMSIS_DEVICE_F4 ?= /opt/vendor/cmsis_device_f4
+FREERTOS_KERNEL ?= /opt/vendor/FreeRTOS-Kernel
+VENDOR_INC       = -DSTM32F407xx -isystem $(CMSIS_CORE)/Include -isystem $(CMSIS_DEVICE_F4)/Include
+CFLAGS   = $(ARCH) $(VENDOR_INC) -Og -g3 -ffreestanding -fno-common -ffunction-sections -fdata-sections \
            -Wall -Wextra -Wshadow -Isrc
+
 LDFLAGS  = $(ARCH) -nostdlib -nostartfiles -T linker/stm32f4.ld -Wl,--gc-sections \
            -Wl,-Map=$(TARGET).map
+
+
+
+
 
 .PHONY: all clean run test gdb
 all: $(TARGET).elf
