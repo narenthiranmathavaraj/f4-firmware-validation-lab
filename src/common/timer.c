@@ -1,23 +1,22 @@
+/* timer.h */
+#pragma once
+#include <stdint.h>
+void     timebase_init(void);
+uint32_t timebase_us(void);   /* wraps every ~71 minutes: always compare using differences */
+uint32_t timebase_ms(void);
 
-#include "timer.h"
+/* timer.c */
+#include "common/timer.h"
 #include "stm32f4xx.h"
-
-#define CPU_CLOCK_HZ  16000000U
-#define SYSTICK_HZ    1000U
-
-static volatile uint32_t g_ms_ticks = 0;
-
-void SysTick_Handler(void)
-{
-    g_ms_ticks++;
-}
 
 void timebase_init(void)
 {
-    SysTick_Config(CPU_CLOCK_HZ / SYSTICK_HZ);
+    RCC->APB1ENR |= RCC_APB1ENR_TIM2EN;
+    TIM2->PSC = 15u;              /* 16 MHz / 16 = 1 MHz -> 1 us per count */
+    TIM2->ARR = 0xFFFFFFFFu;      /* TIM2 is 32-bit on the F4 */
+    TIM2->EGR = TIM_EGR_UG;
+    TIM2->CR1 |= TIM_CR1_CEN;
 }
 
-uint32_t millis(void)
-{
-    return g_ms_ticks;
-}
+uint32_t timebase_us(void) { return TIM2->CNT; }
+uint32_t timebase_ms(void) { return TIM2->CNT / 1000u; }

@@ -8,5 +8,6 @@ typedef enum {
     ERR_BADID = -4,     /* WHO_AM_I / JEDEC ID mismatch */
     ERR_VERIFY = -5,    /* readback != written */
     ERR_NOT_IMPL = -99, /* scaffold stub: you haven't written this yet */
-    ERR_INVALID_ARG = -100
+    ERR_INVALID_ARG = -100,
+    ERR_NINITIALIZED = -6
 } status_t;
