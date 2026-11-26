@@ -4,6 +4,25 @@ A real-time embedded system built around the STM32F407 (ARM Cortex-M4), demonstr
 
 The project focuses on how multiple hardware peripherals and software tasks work together as a reliable embedded system. It is developed and validated using Renode simulation.
 
+## Video Demonstration [link](videos/f4-firmware-validation-lab-main.mp4)
+
+
+
+### The demonstration covers:
+
+- System initialization and firmware boot sequence.
+
+- FreeRTOS task execution and peripheral integration.
+
+- Sensor communication over I2C and SPI.
+
+- UART telemetry and DMA-based data transmission.
+
+- Thermal monitoring and PWM-based fan control.
+
+- Peripheral fault injection and firmware fault handling.
+
+- Automated system-level testing using Robot Framework in Renode.
 ## System Overview
 
 The system integrates multiple peripherals and real-time software components:
