@@ -1,0 +1,5 @@
+macro reset
+"""
+    sysbus LoadELF @/workspaces/f4-bringup/build/f4-bringup.elf
+    sysbus.cpu VectorTableOffset 0x08000000
+"""

@@ -1,120 +1,255 @@
-# f4-bringup
+# STM32F4 Embedded Systems Integration & Fault Management
 
-Register-level I2C / SPI / UART drivers for an STM32F4 (Cortex-M4), written from the reference
-manual and device datasheets (no vendor HAL), run and tested entirely in [Renode](https://renode.io).
+A real-time embedded system built around the STM32F407 (ARM Cortex-M4), demonstrating system-level firmware design using FreeRTOS, register-level peripheral interfaces, DMA-based telemetry, sensor integration, thermal management, and fault handling.
 
-> **One-line pitch (edit):** Bare-metal bring-up of an I2C temperature sensor, an SPI NOR flash and
-> an SPI IMU on a simulated STM32F4, with fault injection, Robot Framework CI and bus traces.
+The project focuses on how multiple hardware peripherals and software tasks work together as a reliable embedded system. It is developed in C without vendor HAL libraries and validated using Renode simulation.
 
-## Results (fill with real output)
+## System Overview
 
+The system integrates multiple peripherals and real-time software components:
+
+- **SPI1:** IMU communication (LSM6DSO)
+- **I2C1:** Temperature monitoring (TMP108)
+- **USART2 + DMA:** Asynchronous UART telemetry and system logging
+- **TIM2 PWM:** Temperature-controlled fan output
+- **FreeRTOS:** Concurrent sensor acquisition, telemetry, and system health monitoring
+
+## System Architecture
+
+```text
+                    STM32F407
+                 ARM Cortex-M4
+                        |
+              +---------+---------+
+              |     FreeRTOS      |
+              +---------+---------+
+                        |
+         +--------------+---------------+
+         |              |               |
+     IMU Task        Temp Task      Telemetry Task
+      100 Hz           1 Hz            10 Hz
+         |              |               |
+       SPI1           I2C1         Log Formatter
+         |              |               |
+      LSM6DSO         TMP108        UART TX Buffer
+                                         |
+                                    DMA Transfer
+                                         |
+                                       USART2
+                                         |
+                                    Serial Output
+
+                        |
+                 Thermal Manager
+                        |
+                 Operating Modes
+                        |
+                    TIM2 PWM
+                        |
+                    Fan Control
+
+                  Health Monitor
+                        |
+              Timeout / Fault Detection
 ```
-f4-bringup boot
-[i2c] addr=0x48 W 00 -> ACK
-[i2c] addr=0x48 R 19 00
-tmp108 raw=0x1900 mC=25000
-[spi1] JEDEC: 20 ba 19
-flash verify OK (256 B @ 0x000000)
-i2c fault: NACK (addr=0x49) in 3 ms, no hang
+
+## Key System Features
+
+### 1. Multi-peripheral integration
+
+- Integrated SPI, I2C, UART, DMA, and timer-based PWM peripherals.
+- Implemented register-level peripheral interfaces using the STM32F4 reference manual and device datasheets.
+- Separated hardware communication drivers from device-specific logic and application-level functionality.
+- Implemented bounded communication waits and explicit error reporting.
+
+### 2. Real-time task architecture
+
+FreeRTOS is used to separate system responsibilities into periodic tasks.
+
+| Task | Frequency | Responsibility |
+|---|---:|---|
+| IMU acquisition | 100 Hz | Read accelerometer data over SPI |
+| Temperature acquisition | 1 Hz | Read temperature over I2C |
+| Telemetry | 10 Hz | Format and transmit system status |
+| Health monitor | 10 Hz | Detect sensor failures and timeouts |
+
+- Used periodic scheduling with `vTaskDelayUntil()`.
+- Protected shared sensor state using FreeRTOS mutexes.
+- Separated sensor acquisition from telemetry and health monitoring.
+- Used asynchronous DMA-based UART transmission to avoid blocking application execution during data transfer.
+
+### 3. DMA-based UART telemetry
+
+Implemented DMA-based UART transmission using USART2 and the STM32F4 DMA controller.
+
+- Configured DMA and USART registers directly without vendor HAL libraries.
+- Transferred formatted telemetry from memory to the USART data register using DMA.
+- Allowed the CPU to continue executing other tasks while UART transmission was in progress.
+- Used DMA transfer completion handling to track transmission status.
+- Separated telemetry formatting, transmit-buffer management, and hardware-level data transfer.
+
+### 4. Thermal management and workload adaptation
+
+Implemented temperature-dependent operating modes to manage system workload and cooling.
+
+| Temperature | Operating mode | System behaviour |
+|---|---|---|
+| Below 50°C | Normal | Full sensor acquisition |
+| 50–59°C | Low cooling | Increased fan duty |
+| 60–69°C | Active cooling | Increased cooling |
+| 70–79°C | Throttling | Reduced nonessential acquisition frequency |
+| 80°C and above | Critical | Pause nonessential sensor activity and maximize cooling |
+
+- Generated PWM using the STM32 hardware timer.
+- Implemented temperature-based fan control.
+- Adapted sensor acquisition frequency according to thermal state.
+- Kept temperature monitoring active during critical operation to detect recovery.
+
+### 5. Fault detection and recovery
+
+- Implemented sensor validity tracking and last-success timestamps.
+- Added timeout-based detection for unresponsive peripherals.
+- Handled I2C NACK conditions and communication errors without indefinite blocking.
+- Distinguished intentional task suspension during thermal operation from unexpected sensor failure.
+- Implemented system health checks and recovery behaviour.
+
+### 6. Simulation and system validation
+
+Used [Renode](https://renode.io/) to simulate the STM32F4 platform and connected peripherals.
+
+- Validated sensor communication and firmware execution without physical hardware.
+- Injected peripheral faults, including incorrect I2C addresses and communication failures.
+- Inspected UART logs and peripheral behaviour during execution.
+- Used Robot Framework for automated system-level tests.
+
+For detailed test scenarios, fault-injection procedures, expected results,
+and execution status, see:
+
+- [System Test Matrix](tests/manual/test_matrix.md)
+- [Fault Injection Notes](tests/manual/fault_injection_notes.md)
+- [Automated Robot Framework Tests](tests/robot/README.md)
+
+## Software Architecture
+
+```text
+src/
+├── main.c
+│
+├── app/
+│   ├── sensor_tasks.c
+│   ├── telemetry.c
+│   ├── health_monitor.c
+│   └── thermal_manager.c
+│
+├── drivers/
+│   ├── i2c.c
+│   ├── spi.c
+│   ├── uart.c
+│   ├── uart_dma.c
+│   └── pwm.c
+│
+├── devices/
+│   ├── tmp108.c
+│   └── lsm6dso.c
+│
+└── common/
+    ├── status.h
+    ├── log.c
+    └── regs.h
+
+platform/
+├── f4_bringup.repl
+└── run_headless.resc
+
+tests/
+├── smoke.robot
+├── sensor.robot
+├── faults.robot
+└── thermal.robot
+
+docs/
+├── architecture.md
+├── datasheet_to_code.md
+├── fault_handling.md
+└── traces/
 ```
 
-CI badge: `![ci](https://github.com/<you>/f4-bringup/actions/workflows/ci.yml/badge.svg)`
+*Adjust this tree to match the actual repository structure.*
 
-## Architecture
+## Design Decisions
 
-```
-main.c
-  devices/   tmp108 (I2C) | spi_flash (SPI) | lsm6dso (SPI)      <- datasheets
-  drivers/   i2c | spi | uart                                    <- reference manual
-  common/    regs.h  status.h (error codes)  log.c (hex/bytes over UART)
-platform/    f4_bringup.repl (the "netlist")  f4_bringup.resc
-tests/       Robot Framework: smoke, tmp108, flash, faults
-```
-
-Add an SVG block diagram here (MCU -> I2C1 -> TMP108, SPI1 -> MT25Q, SPI2 -> LSM6DSO, USART2 -> log).
-
-## Quick start
-
-```
-docker build -t f4-bringup .
-docker run --rm -it -v "$PWD":/work f4-bringup make test      # build + headless tests
-docker run --rm -it -v "$PWD":/work f4-bringup make run       # interactive Renode monitor
-```
-
-> Note: Renode's stock STM32F4 platform downloads an SVD file the first time it loads (needs internet once; cached afterwards).
-
-## Design decisions (the part reviewers read)
-
-- **Why no HAL:** ... (what you learned by going to register level)
-- **Polling vs interrupt vs DMA:** what you chose per bus and why
-- **Error model:** every wait is bounded; `status_t` returned, never a hang
-- **Wiring source of truth:** `platform/f4_bringup.repl`; addresses/pins are not magic numbers
-- **Power:** TMP108 shutdown / one-shot + `WFI` between samples; measured duty cycle: ...
-
-## Datasheet -> code
-
-See [`docs/datasheet_to_code.md`](docs/datasheet_to_code.md): every register and timing used, with
-document + page.
-
-## Debugging evidence
-
-See [`docs/bugs.md`](docs/bugs.md): real bugs hit, the bus trace before/after, root cause, fix.
-Traces live in `docs/traces/`.
-
-## Tests
-
-| Test | What it proves |
+| Design area | Approach |
 |---|---|
-| smoke | boots, UART works |
-| tmp108 | raw bytes decode to a plausible temperature |
-| flash | erase -> program -> readback verify |
-| faults | wrong address / wrong SPI mode / stuck busy returns an error within a timeout |
+| Firmware architecture | Layered drivers, device interfaces, and application tasks |
+| Peripheral access | Direct register-level programming |
+| Task scheduling | Periodic FreeRTOS tasks |
+| Shared data | Mutex-protected sensor state |
+| UART transmission | DMA-based asynchronous TX |
+| Telemetry | Buffered messages and transfer completion handling |
+| Communication errors | Explicit status codes and bounded timeouts |
+| Thermal response | Operating modes and workload adaptation |
+| Validation | Renode simulation and automated tests |
 
-## Limitations / next steps
+### Why register-level programming?
 
-Be honest: simulated peripherals, clocks not modelled, no real-board timing. Next: DMA, a Linux I2C
-client driver for the same sensor on QEMU.
+The project avoids vendor HAL libraries to understand the relationship between peripheral registers, communication protocols, timing requirements, and hardware behaviour.
 
+### Why separate FreeRTOS tasks?
 
+Sensor acquisition, telemetry, and health monitoring have different timing requirements. Independent tasks make their responsibilities and execution periods easier to manage.
 
-Full TODO
+### Why DMA for UART?
 
-Setup (day 1)
+DMA allows telemetry data to be transferred from memory to the UART peripheral without requiring the CPU to transmit every byte. This reduces CPU involvement and allows other real-time tasks to execute concurrently.
 
-[ ] Put the short devcontainer.json in place (no features block) and rebuild the container.
-[ ] make has no warnings, and make test shows smoke OK.
-[ ] Create the GitHub repo, push, and get CI green.
-[ ] Change the run line in the Makefile to renode --disable-xwt --console platform/f4_bringup.resc, since the container has no GUI.
-[ ] In the .resc, replace showAnalyzer sysbus.usart2 with sysbus.usart2 CreateFileBackend @build/uart.log true, so UART output goes to a file you can tail -f.
+### Why fault injection?
 
-I2C by hand (days 2–3)
+Successful communication alone does not demonstrate system reliability. Fault injection helps validate how the firmware behaves when peripherals stop responding or communication fails.
 
-[ ] Read the RM0090 I2C chapter and the TMP108 datasheet.
-[ ] i2c.c: polling version of i2c_init and i2c_write_read, with bounded waits and one log line per transaction.
-[ ] tmp108.c: read the temperature, convert to milli-°C, and print the raw bytes and the decoded value.
-[ ] Switch I2C to interrupt-driven.
-[ ] tests/tmp108.robot: remove Skip and assert on the printed line.
-[ ] Fill the I2C and TMP108 rows in docs/datasheet_to_code.md.
+## Build and Run
 
-Reuse (day 4)
+Requirements:
 
-[ ] Vendor in ST's LL SPI driver (stm32f4xx_hal_driver plus cmsis_device_f4 and the CMSIS core headers), ST's lsm6dso-pid driver, and a flash library. Pin their versions in the README.
-[ ] First check that the flash library works with Renode's MT25Q model. If it doesn't, use a thin command wrapper over the LL SPI.
-[ ] Update tests/flash.robot and confirm JEDEC and flash verify OK print.
+- ARM GCC toolchain
+- CMake / Make
+- Renode
+- Robot Framework (for automated tests)
 
-System layer (days 5–6)
+```bash
+# Build firmware
+make
 
-[ ] Bus abstraction: one bus_read / bus_write / bus_transfer over I2C and SPI, with ST's LSM6DSO driver running through it.
-[ ] Sensor service: timer-driven sampling, a small transaction queue, and optional DMA for SPI.
-[ ] Error handling: classify NACK, timeout and bus-stuck; add retry with backoff, bus recovery, and per-device health counters.
-[ ] Power: duty-cycle the sensors and use WFI between samples.
-[ ] Fault tests (tests/faults.robot): NACK, bus stuck, flash busy. The system must recover and keep running.
-[ ] Stretch: a FreeRTOS task per device with a mutex per bus.
+# Run Renode simulation
+make run
 
-Evidence and polish (day 7)
+# Run automated tests
+make test
+```
 
-[ ] docs/protocols.md: annotated traces for I2C (START, address, ACK/NACK, repeated start), SPI modes and flash commands.
-[ ] docs/bugs.md: 2–3 real bugs with before and after traces in docs/traces/.
-[ ] README: real UART output, architecture diagram, design decisions, limitations.
-[ ] Datasheet table complete, CI badge pointing at your repo.
-[ ] Resume bullets with real numbers.
+Refer to the Makefile and project documentation for the exact commands supported by the repository.
+
+## Future Improvements
+
+- DMA-based SPI acquisition.
+- Circular DMA with UART RX.
+- Interrupt-driven sensor acquisition.
+- Watchdog-based system recovery.
+- More comprehensive fault injection and recovery testing.
+- Hardware validation on a physical STM32F407 development board.
+- Execution-time and CPU-load measurements.
+
+## Technologies
+
+**Languages:** C
+
+**Microcontroller:** STM32F407, ARM Cortex-M4
+
+**RTOS:** FreeRTOS
+
+**Interfaces:** I2C, SPI, UART, PWM, DMA
+
+**Simulation:** Renode
+
+**Testing:** Robot Framework
+
+**Development:** ARM GCC, Make, CMake, Git

@@ -1,7 +1,7 @@
 #define configUSE_PREEMPTION                    1
 #define configUSE_TIME_SLICING                  1
 
-#define configCPU_CLOCK_HZ                      24000000
+#define configCPU_CLOCK_HZ                      72000000
 // #define configCPU_CLOCK_HZ                      (SystemCoreClock)
 #define configTICK_RATE_HZ                      1000
 #define configTICK_TYPE_WIDTH_IN_BITS    TICK_TYPE_WIDTH_32_BITS

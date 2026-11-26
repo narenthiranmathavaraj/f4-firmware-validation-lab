@@ -7,16 +7,18 @@
 #include "FreeRTOS.h"
 #include "task.h"
 #include "semphr.h"
-
 #include "devices/tmp108.h"
 #include "devices/lsm6dso.h"
+#include "devices/fan.h"
 
 #include "drivers/uart.h"
+#include "drivers/uart_dma.h"
 #include "drivers/i2c.h"
 #include "drivers/spi.h"
 
 #include "common/status.h"
 #include "common/log.h"
+#include "common/timer.h"
 
 /* =========================================================
  * Scheduling periods
@@ -82,6 +84,88 @@ static SemaphoreHandle_t sensor_mutex = NULL;
 static bool imu_ready = false;
 static bool temp_ready = false;
 
+/* UART Test */
+
+static const char dma_msg_1[]    = "DMA: first message\n";
+static const char dma_msg_2[]    = "DMA: second message\n";
+static const char dma_msg_long[] =
+"DMA: long 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 END\n";
+
+
+typedef enum
+{
+    THERMAL_NORMAL = 0,
+    THERMAL_ACTIVE_COOL,
+    THERMAL_THROTTLE,
+    THERMAL_CRITICAL
+} thermal_mode_t;
+
+
+#define FAN_TEMP_THRESHOLD_NORMAL       50000
+#define FAN_TEMP_THRESHOLD_ACTIVE_COOL  60000
+#define FAN_TEMP_THRESHOLD_THROTTLING   70000
+#define FAN_TEMP_THRESHOLD_CRITICAL    80000
+static volatile thermal_mode_t thermal_mode = THERMAL_NORMAL;
+static volatile uint32_t       fan_duty     = 100U;   /* matches fan_set_duty(100U) in main */
+
+const char* thermal_mode_to_string(thermal_mode_t s) {
+    switch (s) {
+        case THERMAL_NORMAL:      return "0";
+        case THERMAL_ACTIVE_COOL:   return "1";
+        case THERMAL_THROTTLE: return "2";
+        case THERMAL_CRITICAL: return "3";
+        default:             return "-1";
+    }
+}
+
+void int_to_string(size_t num, char *str)
+{
+    BaseType_t i = 0;
+    BaseType_t negative = 0;
+
+    if (num < 0)
+    {
+        negative = 1;
+        num = -num;
+    }
+
+    do
+    {
+        str[i++] = (num % 10) + '0';
+        num /= 10;
+    } while (num > 0);
+
+    if (negative)
+        str[i++] = '-';
+
+    str[i] = '\0';
+
+    // Reverse the string
+    for (BaseType_t j = 0; j < i / 2; j++)
+    {
+        char temp = str[j];
+        str[j] = str[i - j - 1];
+        str[i - j - 1] = temp;
+    }
+}
+
+static void apply_fan(thermal_mode_t mode, uint32_t duty)
+{
+    thermal_mode = mode;
+    fan_duty     = duty;
+    fan_set_duty(duty);
+}
+
+static void fan_control(int32_t temperature_mC)
+{
+    if      (temperature_mC >= FAN_TEMP_THRESHOLD_CRITICAL)    apply_fan(THERMAL_CRITICAL,    100U);
+    else if (temperature_mC >= FAN_TEMP_THRESHOLD_THROTTLING)  apply_fan(THERMAL_THROTTLE,     80U);
+    else if (temperature_mC >= FAN_TEMP_THRESHOLD_ACTIVE_COOL) apply_fan(THERMAL_ACTIVE_COOL,  60U);
+    else if (temperature_mC >= FAN_TEMP_THRESHOLD_NORMAL)      apply_fan(THERMAL_NORMAL,       30U);
+    else                                                       apply_fan(THERMAL_NORMAL,        0U);
+}
+
+
 /* =========================================================
  * Task declarations
  * ========================================================= */
@@ -101,14 +185,47 @@ static void vSensorCheck(void *argument);
 static void vReadIMU(void *argument)
 {
     (void)argument;
-    log_str("Hi\n");
 
     TickType_t last_wake = xTaskGetTickCount();
 
     int32_t local_accel[3];
-
+    static bool imu_was_paused = false;
     for (;;)
     {
+        uint32_t period_ms;
+
+        if (thermal_mode == THERMAL_CRITICAL)
+        {
+            /* Stop IMU acquisition during critical temperature */
+            xSemaphoreTake(sensor_mutex, portMAX_DELAY);
+            sensors.imu_valid = false;
+            xSemaphoreGive(sensor_mutex);
+            imu_was_paused = true;
+            last_wake = xTaskGetTickCount();
+
+            vTaskDelay(pdMS_TO_TICKS(100));
+            continue;
+        }
+        if (imu_was_paused)
+        {
+            xSemaphoreTake(sensor_mutex, portMAX_DELAY);
+
+            sensors.last_imu_success = xTaskGetTickCount();
+
+            xSemaphoreGive(sensor_mutex);
+
+            imu_was_paused = false;
+        }
+        /* Select sampling frequency */
+        if (thermal_mode == THERMAL_THROTTLE)
+        {
+            period_ms = 50U;  // 20 Hz
+        }
+        else
+        {
+            period_ms = 10U;  // 100 Hz
+        }
+
         if (imu_ready)
         {
             status_t status =
@@ -137,7 +254,7 @@ static void vReadIMU(void *argument)
 
         vTaskDelayUntil(
             &last_wake,
-            pdMS_TO_TICKS(IMU_PERIOD_MS)
+            pdMS_TO_TICKS(period_ms)
         );
     }
 }
@@ -148,7 +265,6 @@ static void vReadIMU(void *argument)
  * TMP108 over I2C
  * 1 Hz = every 1000 ms
  * ========================================================= */
-
 static void vReadTemp(void *argument)
 {
     (void)argument;
@@ -157,8 +273,21 @@ static void vReadTemp(void *argument)
 
     int32_t local_temperature;
 
+    uint32_t consecutive_failures = 0;
     for (;;)
     {
+        uint32_t period_ms;
+
+        /* Select temperature sampling interval */
+        if (thermal_mode == THERMAL_THROTTLE)
+        {
+            period_ms = 500U;   // 2 Hz
+        }
+        else
+        {
+            period_ms = 1000U;  // 1 Hz
+        }
+
         if (temp_ready)
         {
             status_t status =
@@ -169,7 +298,6 @@ static void vReadTemp(void *argument)
                 xSemaphoreTake(sensor_mutex, portMAX_DELAY);
 
                 sensors.temperature_mC = local_temperature;
-
                 sensors.temp_valid = true;
                 sensors.last_temp_success = xTaskGetTickCount();
 
@@ -178,14 +306,27 @@ static void vReadTemp(void *argument)
             else
             {
                 xSemaphoreTake(sensor_mutex, portMAX_DELAY);
+
                 sensors.temp_valid = false;
+
                 xSemaphoreGive(sensor_mutex);
             }
+        }
+        if (temp_ready)
+        {
+
+            fan_control(local_temperature);            /* only act on a fresh reading */
+        }
+        else
+        {
+            /* ... your existing temp_valid = false block ... */
+            if (++consecutive_failures >= 3U)
+                apply_fan(thermal_mode, 100U);         /* cannot see the temperature: cool hard */
         }
 
         vTaskDelayUntil(
             &last_wake,
-            pdMS_TO_TICKS(TEMP_PERIOD_MS)
+            pdMS_TO_TICKS(period_ms)
         );
     }
 }
@@ -238,8 +379,17 @@ static void vTelemetry(void *argument)
 
         log_dec(snapshot.accel[2]);
 
-        log_str("\n");
 
+
+        log_str("\n");
+       /* Fan Status */
+        log_str("thermal mode=");
+        log_str(thermal_mode_to_string(thermal_mode));
+        log_str(" duty=");
+        char str[12]; // Enough space for a 32-bit int (-2147483648 + '\0')
+        int_to_string(fan_duty, str);
+        log_str(str);
+        log_str("\n");
         vTaskDelayUntil(
             &last_wake,
             pdMS_TO_TICKS(TELEMETRY_PERIOD_MS)
@@ -284,12 +434,13 @@ static void vSensorCheck(void *argument)
 
         /* Check IMU communication */
 
-        if ((now - snapshot.last_imu_success) > imu_timeout)
+        bool imu_paused = (thermal_mode == THERMAL_CRITICAL);
+
+        if (!imu_paused &&
+            (now - snapshot.last_imu_success) > imu_timeout)
         {
             log_str("FAULT: IMU communication timeout\n");
-
             vTaskDelay(pdMS_TO_TICKS(50));
-
             NVIC_SystemReset();
         }
 
@@ -310,21 +461,29 @@ static void vSensorCheck(void *argument)
         );
     }
 }
-
+void uart_dma_selftest(void)
+{
+    log_str(dma_msg_1);
+    log_str(dma_msg_2);
+    log_str(dma_msg_long);
+    log_str("DMA: self-test done\n");
+}
 /* =========================================================
  * MAIN
  * ========================================================= */
 
 int main(void)
 {
+
     /* -----------------------------------------------------
      * 1. System initialization
      * ----------------------------------------------------- */
 
     timebase_init();
-
     uart_dma_init();
 
+    uart_dma_selftest();
+    fan_init();
     log_str("\n");
     log_str("f4-bringup boot\n");
     log_str("BOOT_OK\n");
@@ -354,7 +513,6 @@ int main(void)
      * ----------------------------------------------------- */
 
     status_t spi_status = spi_init(&spi1);
-
     status_t imu_status = ERR_NINITIALIZED;
     status_t accel_cfg_status = ERR_NINITIALIZED;
 

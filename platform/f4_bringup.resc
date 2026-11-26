@@ -1,9 +1,17 @@
+
 :name: f4-bringup
 :description: STM32F4 bring-up firmware
 
 mach create "f4-bringup"
+#machine LoadPlatformDescription @/workspaces/f4-bringup/platform/f4_bringup.repl
+#machine LoadPlatformDescription @/workspaces/f4-bringup/platform/f4_bringup.repl
+machine LoadPlatformDescription @/workspaces/f4-bringup/platform/f4_no_tmp108.repl
 
-machine LoadPlatformDescription @/workspaces/f4-bringup/platform/f4_bringup.repl
+macro f4_bringup.reset
+"""
+    sysbus LoadELF @/workspaces/f4-bringup/build/f4-bringup.elf
+    sysbus.cpu VectorTableOffset 0x08000000
+"""
 
 sysbus LoadELF @/workspaces/f4-bringup/build/f4-bringup.elf
 sysbus.cpu VectorTableOffset 0x08000000
@@ -12,5 +20,8 @@ showAnalyzer sysbus.usart2
 
 machine StartGdbServer 3333
 
-sysbus.i2c1.tmp108 Temperature 25
+#sysbus.i2c1.tmp108 Temperature 25
+logLevel 3 sysbus.i2c1
+logLevel 3 sysbus.spi1.imu
+
 start

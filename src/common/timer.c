@@ -1,13 +1,11 @@
 /* timer.h */
-#pragma once
 #include <stdint.h>
-void     timebase_init(void);
-uint32_t timebase_us(void);   /* wraps every ~71 minutes: always compare using differences */
-uint32_t timebase_ms(void);
+
 
 /* timer.c */
 #include "common/timer.h"
 #include "stm32f4xx.h"
+
 
 void timebase_init(void)
 {

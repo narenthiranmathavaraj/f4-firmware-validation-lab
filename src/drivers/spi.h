@@ -14,4 +14,5 @@ typedef struct
 } spi_cfg_t;
 
 status_t spi_init(const spi_cfg_t *cfg);
+static void spi_gpio_init(void);
 status_t spi_transfer(const spi_cfg_t *cfg, const uint8_t *tx, uint8_t *rx, uint32_t len);

@@ -10,3 +10,4 @@ imu: Sensors.LSM6DSO_IMU @ spi1
 
 spiFlashMemory: Memory.MappedMemory
     size: 0x2000000
+

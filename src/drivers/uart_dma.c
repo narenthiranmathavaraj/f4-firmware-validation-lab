@@ -2,7 +2,7 @@
 #include "common/status.h"
 #include "common/log.h"
 #include "stm32f4xx.h"
-#include "drivers/uart.h"
+#include "drivers/uart_dma.h"
 /*#define USART_CR3_DMAT_Pos            (7U)
 #define USART_CR3_DMAT_Msk            (0x1UL << USART_CR3_DMAT_Pos)*/
 /* USART2. Renode does not model clocks/baud; real HW also needs GPIO AF7 on PA2/PA3 + BRR. */

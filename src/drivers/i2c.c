@@ -35,7 +35,7 @@ status_t i2c_init(void)
     I2C1->CR1 &= ~I2C_CR1_PE;
     I2C1->CR1 |= I2C_CR1_SWRST;
     I2C1->CR1 &= ~I2C_CR1_SWRST;
-
+    I2C1->CR1 &= ~I2C_CR1_POS;
     /* Timing: must be written while PE = 0 */
     I2C1->CR2   = PCLK1_MHZ;                                 /* FREQ = PCLK1 in MHz */
     I2C1->CCR   = PCLK1_MHZ * 1000000u / (2u * I2C_SCL_HZ);  /* std mode: Thigh = Tlow = CCR * Tpclk1 -> 80 */
@@ -106,14 +106,17 @@ static status_t rx_phase(uint8_t *b, uint32_t n)
         I2C1->CR1 |= I2C_CR1_STOP;
         if ((st = wait_sr1(I2C_SR1_RXNE)) != ERR_OK) return st;
         b[0] = (uint8_t)I2C1->DR;
-    } else if (n == 2) {
+    }
+    else if (n == 2) {
         clear_addr();
-        I2C1->CR1 &= ~I2C_CR1_ACK;               /* with POS=1 this NACKs byte 2 */
         if ((st = wait_sr1(I2C_SR1_BTF)) != ERR_OK) return st;
+
+        I2C1->CR1 &= ~I2C_CR1_ACK;               /* with POS=1 this NACKs byte 2 */
         I2C1->CR1 |= I2C_CR1_STOP;
         b[0] = (uint8_t)I2C1->DR;
         b[1] = (uint8_t)I2C1->DR;
-    } else {
+    }
+    else {
         clear_addr();
         for (uint32_t i = 0; i < n - 3; i++) {
             if ((st = wait_sr1(I2C_SR1_RXNE)) != ERR_OK) return st;
