@@ -2,7 +2,7 @@
 
 A real-time embedded system built around the STM32F407 (ARM Cortex-M4), demonstrating system-level firmware design using FreeRTOS, register-level peripheral interfaces, DMA-based telemetry, sensor integration, thermal management, and fault handling.
 
-The project focuses on how multiple hardware peripherals and software tasks work together as a reliable embedded system. It is developed in C without vendor HAL libraries and validated using Renode simulation.
+The project focuses on how multiple hardware peripherals and software tasks work together as a reliable embedded system. It is developed and validated using Renode simulation.
 
 ## System Overview
 
@@ -196,9 +196,6 @@ docs/
 | Thermal response | Operating modes and workload adaptation |
 | Validation | Renode simulation and automated tests |
 
-### Why register-level programming?
-
-The project avoids vendor HAL libraries to understand the relationship between peripheral registers, communication protocols, timing requirements, and hardware behaviour.
 
 ### Why separate FreeRTOS tasks?
 
