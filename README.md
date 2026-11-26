@@ -125,9 +125,9 @@ Used [Renode](https://renode.io/) to simulate the STM32F4 platform and connected
 For detailed test scenarios, fault-injection procedures, expected results,
 and execution status, see:
 
-- [System Test Matrix](tests/manual/test_matrix.md)
-- [Fault Injection Notes](tests/manual/fault_injection_notes.md)
-- [Automated Robot Framework Tests](tests/robot/README.md)
+- [System Test Matrix](docs/test_matrix.md)
+- [Fault Injection Notes](docs/fault_injection_notes.md)
+- [Automated Robot Framework Tests](docs/automated_system_level_testing.md)
 
 ## Software Architecture
 
@@ -135,43 +135,57 @@ and execution status, see:
 src/
 ├── main.c
 │
-├── app/
-│   ├── sensor_tasks.c
-│   ├── telemetry.c
-│   ├── health_monitor.c
-│   └── thermal_manager.c
+├── startup.c
 │
 ├── drivers/
 │   ├── i2c.c
+│   ├── i2c.h
 │   ├── spi.c
-│   ├── uart.c
+│   ├── spi.h
 │   ├── uart_dma.c
-│   └── pwm.c
+│   └── uart_dma.h
 │
 ├── devices/
 │   ├── tmp108.c
-│   └── lsm6dso.c
+│   ├── tmp108.h
+│   ├── lsm6dso.c
+│   ├── lsm6dso.h
+│   ├── fan.c
+│   └── fan.h
 │
 └── common/
-    ├── status.h
-    ├── log.c
-    └── regs.h
-
+│   ├── status.c
+│   ├── status.h
+│   ├── log.c
+│   ├── log.h
+│   ├── rtos_hook.c
+│   ├── mem.c
+│   ├── timer.c
+│   └── timer.h
+│
 platform/
-├── f4_bringup.repl
-└── run_headless.resc
-
+│  ├── f4_bringup.repl
+│  ├── f4_no_imu.repl
+│  ├── f4_no_tmp108.repl
+│  ├── f4_bringup.resc
+│  ├── reset_macro.resc
+│  ├── run_headless.resc
+│  └── f4_bringup.resc
+│
 tests/
-├── smoke.robot
-├── sensor.robot
-├── faults.robot
-└── thermal.robot
-
+│  ├──common.resource
+│  ├── smoke.robot
+│  ├── spi_faults.robot
+│  ├── i2c_faults.robot
+│  ├── uart_dma.robot
+│  ├── health_monitor.robot
+│  └── thermal.robot
+│
 docs/
-├── architecture.md
-├── datasheet_to_code.md
-├── fault_handling.md
-└── traces/
+│  ├── datasheet_to_code.md
+│  ├── fault_injection_notes.md
+│  ├── protocol.md
+│  └── automated_system_level_testing
 ```
 
 *Adjust this tree to match the actual repository structure.*

@@ -51,7 +51,7 @@ sim: all
 
 # headless Robot tests
 test: all
-	renode-test tests/smoke.robot tests/tmp108.robot tests/flash.robot tests/faults.robot
+	renode-test tests/smoke.robot tests/health_monitor.robot tests/i2c_faults.robot tests/spi_faults.robot tests/thermal.robot tests/uart_dma.robot
 
 # GDB against Renode's gdb server (start `make run`, then `make gdb` in another shell)
 gdb: all

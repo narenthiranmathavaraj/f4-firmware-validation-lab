@@ -3,9 +3,8 @@
 :description: STM32F4 bring-up firmware
 
 mach create "f4-bringup"
-#machine LoadPlatformDescription @/workspaces/f4-bringup/platform/f4_bringup.repl
-#machine LoadPlatformDescription @/workspaces/f4-bringup/platform/f4_bringup.repl
-machine LoadPlatformDescription @/workspaces/f4-bringup/platform/f4_no_tmp108.repl
+machine LoadPlatformDescription @/workspaces/f4-bringup/platform/f4_bringup.repl
+#machine LoadPlatformDescription @/workspaces/f4-bringup/platform/f4_no_tmp108.repl
 
 macro f4_bringup.reset
 """

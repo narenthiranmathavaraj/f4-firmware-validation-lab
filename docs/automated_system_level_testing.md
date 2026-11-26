@@ -41,17 +41,13 @@ The objective is to make system validation repeatable and to detect regressions 
 
 ```text
 tests/
-└── robot/
-    ├── README.md
-    ├── smoke.robot
-    ├── i2c_faults.robot
-    ├── spi_faults.robot
-    ├── uart_dma.robot
-    ├── thermal.robot
-    └── health_monitor.robot
-
-    resources/
-    └── renode_keywords.robot
+├── smoke.robot
+├── common.resource
+├── i2c_faults.robot
+├── spi_faults.robot
+├── uart_dma.robot
+├── thermal.robot
+└── health_monitor.robot
 ```
 
 ## Test Suites
@@ -74,41 +70,35 @@ tests/
 - Python 3
 - Robot Framework
 
-Install Robot Framework:
-
-```bash
-python3 -m pip install robotframework
-```
 
 ### Build Firmware
 
 From the project root:
 
 ```bash
-make clean
 make
 ```
 
 ### Run Individual Test Suites
 
 ```bash
-robot tests/robot/smoke.robot
+renode-test tests/smoke.robot
 
-robot tests/robot/i2c_faults.robot
+renode-test tests/robot/i2c_faults.robot
 
-robot tests/robot/spi_faults.robot
+renode-test tests/robot/spi_faults.robot
 
-robot tests/robot/uart_dma.robot
+renode-test tests/robot/uart_dma.robot
 
-robot tests/robot/thermal.robot
+renode-test tests/robot/thermal.robot
 
-robot tests/robot/health_monitor.robot
+renode-test tests/robot/health_monitor.robot
 ```
 
 ### Run All Tests
 
 ```bash
-robot tests/robot/
+make test
 ```
 
 ### Generate Reports
@@ -122,40 +112,6 @@ output.xml
 ```
 
 These contain the overall test results, detailed execution logs, and machine-readable test output.
-
-## Example Test Case
-
-The following illustrates the structure of an I2C wrong-address test.
-
-```robot
-*** Settings ***
-Resource    ../resources/renode_keywords.robot
-
-*** Test Cases ***
-
-TMP108 Wrong Address
-    Start Firmware With Wrong I2C Address
-    Wait For Line On Uart    NACK
-    Wait For Line On Uart    read failed
-    Wait For Line On Uart    system alive
-```
-
-The keywords used here must be implemented in the shared resource file. They are not built-in Robot Framework keywords.
-
-## Reusable Keywords
-
-The resource file should provide reusable operations such as:
-
-| Keyword | Responsibility |
-|---|---|
-| `Start Firmware` | Launch Renode and load the firmware |
-| `Start Firmware With Wrong I2C Address` | Run a build configured with an incorrect address |
-| `Wait For Line On Uart` | Wait for a specific UART message |
-| `Set TMP108 Temperature` | Change the simulated sensor temperature |
-| `Remove TMP108 From I2C` | Remove the simulated peripheral |
-| `Restart Simulation` | Reset the test environment |
-
-Implement these keywords using the actual Renode launch and UART-capture mechanism used by the project.
 
 ## Test Design Principles
 
@@ -189,5 +145,7 @@ The automated results therefore validate firmware behaviour against the supporte
 
 ## Related Documentation
 
-- [System Test Matrix](../manual/test_matrix.md)
-- [Fault Injection Notes](../manual/fault_injection_notes.md)
+
+- [System Test Matrix](docs/test_matrix.md)
+- [Fault Injection Notes](docs/fault_injection_notes.md)
+- [Automated Robot Framework Tests](docs/automated_system_level_testing.md)
