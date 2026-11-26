@@ -1,0 +1,425 @@
+16:25:12.2336 [INFO] cpu: Setting initial values: PC = 0x800097D, SP = 0x20020000.
+16:25:12.2344 [INFO] f4-bringup: Machine started.
+16:25:12.2790 [WARNING] usart2: Unhandled read from offset 0x14.
+16:25:12.2791 [WARNING] usart2: Unhandled write to offset 0x14, value 0x80.
+16:25:12.2822 [INFO] usart2: [host: 0.23s (+0.23s)|virt: 0.21ms (+0.21ms)] DMA: first message
+16:25:12.2824 [INFO] usart2: [host: 0.23s (+0.27ms)|virt:     0.21ms (+0s)] DMA: second message
+16:25:12.2827 [INFO] usart2: [host: 0.23s (+0.33ms)|virt:     0.21ms (+0s)] DMA: long 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 END
+16:25:12.2827 [INFO] usart2: [host:   0.23s (+87µs)|virt:     0.21ms (+0s)] DMA: self-test done
+16:25:12.2920 [WARNING] timer2: Unhandled write to offset 0x18. Unhandled bits: [3] when writing value 0x68. Tags: OC1PE (0x1).
+16:25:12.2928 [INFO] usart2: [host: 0.24s (+10.04ms)|virt: 0.24ms (+27.08µs)] 
+16:25:12.2929 [INFO] usart2: [host:  0.24s (+0.12ms)|virt:      0.24ms (+0s)] f4-bringup boot
+16:25:12.2930 [INFO] usart2: [host:    0.24s (+83µs)|virt:      0.24ms (+0s)] BOOT_OK
+16:25:12.2935 [WARNING] gpioPortB: Unhandled write to offset 0x4. Unhandled bits: [6-7] when writing value 0xC0. Tags: OT6 (0x1), OT7 (0x1).
+16:25:12.2960 [INFO] usart2: [host:  0.24s (+2.95ms)|virt:      0.24ms (+0s)] i2c CR1=0x00000001
+16:25:12.2960 [INFO] usart2: [host:  0.24s (+0.11ms)|virt:      0.24ms (+0s)] i2c CR2=0x00000010
+16:25:12.2961 [INFO] usart2: [host:    0.24s (+92µs)|virt:      0.24ms (+0s)] i2c CCR=0x00000050
+16:25:12.2962 [INFO] usart2: [host:    0.24s (+91µs)|virt:      0.24ms (+0s)] i2c TRISE=0x00000011
+16:25:12.2963 [INFO] usart2: [host:  0.24s (+0.13ms)|virt:      0.24ms (+0s)] i2c SR2=0x00000000
+16:25:12.3036 [WARNING] i2c1.tmp108: Unhandled write to offset 0x1. Unhandled bits: [5] when writing value 0x22. Tags: CONF.conv_rate (0x1).
+16:25:12.3039 [WARNING] i2c1.tmp108: Unhandled write to offset 0x1. Unhandled bits: [1] when writing value 0x10. Tags: CONF.mode (0x0).
+16:25:12.3041 [INFO] usart2: [host:  0.25s (+7.72ms)|virt:  0.3ms (+62.11µs)] i2c_init=0x00000000
+16:25:12.3042 [INFO] usart2: [host:  0.25s (+0.11ms)|virt:       0.3ms (+0s)] tmp108_init=0x00000000
+16:25:12.3228 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:12.3350 [WARNING] spi1: Slave mode is not supported
+16:25:12.3374 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:12.3388 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:12.3388 [INFO] usart2: [host: 0.28s (+34.29ms)|virt: 0.31ms (+11.65µs)] spi_init=0x00000000
+16:25:12.3388 [INFO] usart2: [host:  0.28s (+0.13ms)|virt:      0.31ms (+0s)] lsm6dso_init=0x00000000
+16:25:12.3389 [INFO] usart2: [host:    0.28s (+91µs)|virt:      0.31ms (+0s)] accel_config=0x00000000
+16:25:12.3389 [INFO] usart2: [host:  0.28s (+0.26ms)|virt:      0.31ms (+0s)] Free heap before mutex: 0
+16:25:12.3396 [INFO] usart2: [host:  0.28s (+0.62ms)|virt:      0.31ms (+0s)] Free heap after mutex: 16296
+16:25:12.3397 [INFO] usart2: [host:  0.28s (+0.19ms)|virt:      0.31ms (+0s)] Free heap before tasks: 16296
+16:25:12.3402 [INFO] usart2: [host:  0.28s (+0.45ms)|virt:  0.4ms (+88.35µs)] Create IMU: 1
+16:25:12.3404 [INFO] usart2: [host:  0.28s (+0.17ms)|virt:       0.4ms (+0s)] Heap remaining: 14656
+16:25:12.3406 [INFO] usart2: [host:  0.28s (+0.24ms)|virt:    0.5ms (+0.1ms)] Create Temperature: 1
+16:25:12.3408 [INFO] usart2: [host:  0.28s (+0.17ms)|virt:       0.5ms (+0s)] Heap remaining: 13016
+16:25:12.3410 [INFO] usart2: [host:  0.28s (+0.21ms)|virt:    0.6ms (+0.1ms)] Create Telemetry: 1
+16:25:12.3412 [INFO] usart2: [host:  0.29s (+0.21ms)|virt:       0.6ms (+0s)] Heap remaining: 11376
+16:25:12.3427 [INFO] usart2: [host:  0.29s (+1.49ms)|virt:    0.7ms (+0.1ms)] Create Health: 1
+16:25:12.3429 [INFO] usart2: [host:  0.29s (+0.17ms)|virt:       0.7ms (+0s)] Heap remaining: 9736
+16:25:12.3429 [INFO] usart2: [host:    0.29s (+83µs)|virt:       0.7ms (+0s)] ALL TASKS CREATED
+16:25:12.3430 [INFO] usart2: [host:    0.29s (+95µs)|virt:       0.7ms (+0s)] Starting FreeRTOS scheduler
+16:25:12.3487 [WARNING] spi1.imu: Unhandled read from offset 0x13.
+16:25:12.3488 [WARNING] spi1.imu: Unhandled read from offset 0x14.
+16:25:12.3488 [WARNING] spi1.imu: Unhandled read from offset 0x15.
+16:25:12.3488 [WARNING] spi1.imu: Unhandled read from offset 0x16.
+16:25:12.3488 [WARNING] spi1.imu: Unhandled read from offset 0x18.
+16:25:12.3489 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:12.3498 [WARNING] i2c1: Unhandled write to offset 0x0. Unhandled bits: [11] when writing value 0xC01.
+16:25:12.3509 [WARNING] i2c1: Tried to read from an empty fifo
+16:25:12.3519 [INFO] usart2: [host:    0.3s (+8.8ms)|virt:  0.81ms (+0.11ms)] TEMP valid=1 temp_mC=25000 | IMU valid=1 accel_mg=0,0,0
+16:25:12.3521 [INFO] usart2: [host:   0.3s (+0.29ms)|virt:      0.81ms (+0s)] thermal mode=0 duty=0
+16:25:12.3546 [WARNING] spi1.imu: Unhandled read from offset 0x19.
+16:25:12.3546 [WARNING] spi1.imu: Unhandled read from offset 0x1A.
+16:25:12.3546 [WARNING] spi1.imu: Unhandled read from offset 0x1B.
+16:25:12.3547 [WARNING] spi1.imu: Unhandled read from offset 0x1C.
+16:25:12.3547 [WARNING] spi1.imu: Unhandled read from offset 0x1D.
+16:25:12.3547 [WARNING] spi1.imu: Unhandled read from offset 0x1E.
+16:25:12.3547 [WARNING] spi1.imu: Unhandled read from offset 0x1F.
+16:25:12.3548 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:12.3575 [WARNING] spi1.imu: fifo: No sample found with GyroscopeNC tag
+16:25:12.3575 [WARNING] spi1.imu: fifo: No sample found with GyroscopeNC tag
+16:25:12.3575 [WARNING] spi1.imu: fifo: No sample found with GyroscopeNC tag
+16:25:12.3575 [WARNING] spi1.imu: fifo: No sample found with GyroscopeNC tag
+16:25:12.3575 [WARNING] spi1.imu: fifo: No sample found with GyroscopeNC tag
+16:25:12.3576 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:12.3593 [WARNING] spi1.imu: fifo: No sample found with GyroscopeNC tag
+16:25:12.3595 [WARNING] spi1.imu: fifo: No sample found with AccelerometerNC tag
+16:25:12.3595 [WARNING] spi1.imu: fifo: No sample found with AccelerometerNC tag
+16:25:12.3595 [WARNING] spi1.imu: fifo: No sample found with AccelerometerNC tag
+16:25:12.3595 [WARNING] spi1.imu: fifo: No sample found with AccelerometerNC tag
+16:25:12.3595 [WARNING] spi1.imu: fifo: No sample found with AccelerometerNC tag
+16:25:12.3595 [WARNING] spi1.imu: fifo: No sample found with AccelerometerNC tag
+16:25:12.3597 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:12.3615 [WARNING] spi1.imu: Unhandled read from offset 0x2E.
+16:25:12.3615 [WARNING] spi1.imu: Unhandled read from offset 0x2F.
+16:25:12.3615 [WARNING] spi1.imu: Unhandled read from offset 0x30.
+16:25:12.3615 [WARNING] spi1.imu: Unhandled read from offset 0x31.
+16:25:12.3615 [WARNING] spi1.imu: Unhandled read from offset 0x32.
+16:25:12.3615 [WARNING] spi1.imu: Unhandled read from offset 0x33.
+16:25:12.3615 [WARNING] spi1.imu: Unhandled read from offset 0x34.
+16:25:12.3617 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:12.3631 [WARNING] spi1.imu: Unhandled read from offset 0x35.
+16:25:12.3631 [WARNING] spi1.imu: Unhandled read from offset 0x36.
+16:25:12.3631 [WARNING] spi1.imu: Unhandled read from offset 0x37.
+16:25:12.3632 [WARNING] spi1.imu: Unhandled read from offset 0x38.
+16:25:12.3632 [WARNING] spi1.imu: Unhandled read from offset 0x39.
+16:25:12.3649 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:12.3665 [WARNING] spi1.imu: Unhandled read from offset 0x3C.
+16:25:12.3665 [WARNING] spi1.imu: Unhandled read from offset 0x3D.
+16:25:12.3665 [WARNING] spi1.imu: Unhandled read from offset 0x3E.
+16:25:12.3665 [WARNING] spi1.imu: Unhandled read from offset 0x3F.
+16:25:12.3665 [WARNING] spi1.imu: Unhandled read from offset 0x40.
+16:25:12.3665 [WARNING] spi1.imu: Unhandled read from offset 0x41.
+16:25:12.3665 [WARNING] spi1.imu: Unhandled read from offset 0x42.
+16:25:12.3667 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:12.3682 [WARNING] spi1.imu: Unhandled read from offset 0x43.
+16:25:12.3682 [WARNING] spi1.imu: Unhandled read from offset 0x44.
+16:25:12.3682 [WARNING] spi1.imu: Unhandled read from offset 0x45.
+16:25:12.3682 [WARNING] spi1.imu: Unhandled read from offset 0x46.
+16:25:12.3682 [WARNING] spi1.imu: Unhandled read from offset 0x47.
+16:25:12.3682 [WARNING] spi1.imu: Unhandled read from offset 0x48.
+16:25:12.3682 [WARNING] spi1.imu: Unhandled read from offset 0x49.
+16:25:12.3683 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:12.3701 [WARNING] spi1.imu: Unhandled read from offset 0x4A.
+16:25:12.3701 [WARNING] spi1.imu: Unhandled read from offset 0x4B.
+16:25:12.3701 [WARNING] spi1.imu: Unhandled read from offset 0x4C.
+16:25:12.3701 [WARNING] spi1.imu: Unhandled read from offset 0x4D.
+16:25:12.3701 [WARNING] spi1.imu: Unhandled read from offset 0x4E.
+16:25:12.3701 [WARNING] spi1.imu: Unhandled read from offset 0x4F.
+16:25:12.3701 [WARNING] spi1.imu: Unhandled read from offset 0x50.
+16:25:12.3703 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:12.3728 [WARNING] spi1.imu: Unhandled read from offset 0x51.
+16:25:12.3729 [WARNING] spi1.imu: Unhandled read from offset 0x52.
+16:25:12.3729 [WARNING] spi1.imu: Unhandled read from offset 0x53.
+16:25:12.3729 [WARNING] spi1.imu: Unhandled read from offset 0x54.
+16:25:12.3729 [WARNING] spi1.imu: Unhandled read from offset 0x55.
+16:25:12.3729 [WARNING] spi1.imu: Unhandled read from offset 0x56.
+16:25:12.3729 [WARNING] spi1.imu: Unhandled read from offset 0x57.
+16:25:12.3730 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:12.3745 [WARNING] spi1.imu: Unhandled read from offset 0x58.
+16:25:12.3745 [WARNING] spi1.imu: Unhandled read from offset 0x59.
+16:25:12.3745 [WARNING] spi1.imu: Unhandled read from offset 0x5A.
+16:25:12.3746 [WARNING] spi1.imu: Unhandled read from offset 0x5B.
+16:25:12.3746 [WARNING] spi1.imu: Unhandled read from offset 0x5C.
+16:25:12.3746 [WARNING] spi1.imu: Unhandled read from offset 0x5D.
+16:25:12.3746 [WARNING] spi1.imu: Unhandled read from offset 0x5E.
+16:25:12.3748 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:12.3762 [WARNING] spi1.imu: Unhandled read from offset 0x5F.
+16:25:12.3762 [WARNING] spi1.imu: Unhandled read from offset 0x60.
+16:25:12.3762 [WARNING] spi1.imu: Unhandled read from offset 0x61.
+16:25:12.3762 [WARNING] spi1.imu: Unhandled read from offset 0x62.
+16:25:12.3763 [WARNING] spi1.imu: Unhandled read from offset 0x63.
+16:25:12.3763 [WARNING] spi1.imu: Unhandled read from offset 0x64.
+16:25:12.3763 [WARNING] spi1.imu: Unhandled read from offset 0x65.
+16:25:12.3764 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:12.3777 [WARNING] spi1.imu: Unhandled read from offset 0x66.
+16:25:12.3777 [WARNING] spi1.imu: Unhandled read from offset 0x67.
+16:25:12.3777 [WARNING] spi1.imu: Unhandled read from offset 0x68.
+16:25:12.3778 [WARNING] spi1.imu: Unhandled read from offset 0x69.
+16:25:12.3778 [WARNING] spi1.imu: Unhandled read from offset 0x6A.
+16:25:12.3778 [WARNING] spi1.imu: Unhandled read from offset 0x6B.
+16:25:12.3778 [WARNING] spi1.imu: Unhandled read from offset 0x6C.
+16:25:12.3779 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:12.3793 [WARNING] spi1.imu: Unhandled read from offset 0x6D.
+16:25:12.3793 [WARNING] spi1.imu: Unhandled read from offset 0x6E.
+16:25:12.3793 [WARNING] spi1.imu: Unhandled read from offset 0x6F.
+16:25:12.3794 [WARNING] spi1.imu: Unhandled read from offset 0x70.
+16:25:12.3794 [WARNING] spi1.imu: Unhandled read from offset 0x71.
+16:25:12.3794 [WARNING] spi1.imu: Unhandled read from offset 0x72.
+16:25:12.3794 [WARNING] spi1.imu: Unhandled read from offset 0x73.
+16:25:12.3809 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:12.3827 [WARNING] spi1.imu: Unhandled read from offset 0x74.
+16:25:12.3827 [WARNING] spi1.imu: Unhandled read from offset 0x75.
+16:25:12.3828 [WARNING] spi1.imu: Unhandled read from offset 0x76.
+16:25:12.3828 [WARNING] spi1.imu: Unhandled read from offset 0x77.
+16:25:12.3847 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:12.3866 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:12.3958 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:12.4061 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:12.4160 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:12.4261 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:12.4358 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:12.4459 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:12.4559 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:12.4660 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:12.4759 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:12.4858 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:12.4959 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:12.5060 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:12.5161 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:12.5262 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:12.5359 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:12.5459 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:12.5558 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:12.5658 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:12.5759 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:12.5860 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:12.5958 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:12.6059 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:12.6159 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:12.6262 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:12.6359 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:12.6459 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:12.6559 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:12.6659 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:12.6759 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:12.6858 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:12.6959 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:12.7060 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:12.7166 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:12.7259 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:12.7359 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:12.7458 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:12.7559 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:12.7660 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:12.7758 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:12.7861 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:12.7960 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:12.8059 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:12.8158 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:12.8259 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:12.8360 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:12.8459 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:12.8560 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:12.8658 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:12.8760 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:12.8860 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:12.8959 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:12.9059 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:12.9158 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:12.9259 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:12.9361 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:12.9459 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:12.9561 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:12.9664 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:12.9759 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:12.9859 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:12.9958 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.0060 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.0160 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.0259 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.0358 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.0459 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.0559 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.0660 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.0759 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.0859 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.0959 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.1059 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.1159 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.1260 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.1359 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.1458 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.1558 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.1676 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.1759 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.1859 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.1959 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.2058 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.2159 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.2259 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.2359 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.2360 [WARNING] i2c1: Unhandled write to offset 0x0. Unhandled bits: [11] when writing value 0xC01.
+16:25:13.2361 [WARNING] i2c1: Tried to read from an empty fifo
+16:25:13.2368 [INFO] usart2: [host:   1.18s (+0.88s)|virt:          1s (+1s)] TEMP valid=1 temp_mC=25000 | IMU valid=1 accel_mg=0,0,0
+16:25:13.2370 [INFO] usart2: [host:  1.18s (+0.23ms)|virt:          1s (+0s)] thermal mode=0 duty=0
+16:25:13.2458 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.2558 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.2661 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.2760 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.2859 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.2958 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.3058 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.3160 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.3260 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.3359 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.3458 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.3558 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.3662 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.3759 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.3861 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.3959 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.4060 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.4160 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.4258 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.4360 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.4460 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.4560 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.4663 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.4759 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.4858 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.4959 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.5059 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.5158 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.5259 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.5362 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.5458 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.5559 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.5658 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.5759 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.5858 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.5959 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.6059 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.6159 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.6259 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.6359 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.6459 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.6559 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.6659 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.6758 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.6859 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.6958 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.7063 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.7161 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.7259 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.7360 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.7459 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.7559 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.7658 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.7759 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.7859 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.7959 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.8064 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.8159 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.8259 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.8359 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.8460 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.8558 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.8659 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.8759 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.8860 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.8960 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.9062 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.9159 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.9259 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.9359 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.9464 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.9559 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.9659 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.9758 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.9859 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:13.9959 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.0059 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.0158 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.0259 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.0359 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.0459 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.0560 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.0661 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.0758 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.0860 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.0960 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.1059 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.1167 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.1259 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.1359 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.1458 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.1561 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.1662 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.1759 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.1858 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.1959 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.2061 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.2160 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.2259 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.2367 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.2372 [WARNING] i2c1: Unhandled write to offset 0x0. Unhandled bits: [11] when writing value 0xC01.
+16:25:14.2372 [WARNING] i2c1: Tried to read from an empty fifo
+16:25:14.2379 [INFO] usart2: [host:      2.18s (+1s)|virt:          2s (+1s)] TEMP valid=1 temp_mC=25000 | IMU valid=1 accel_mg=0,0,0
+16:25:14.2383 [INFO] usart2: [host:  2.18s (+0.35ms)|virt:          2s (+0s)] thermal mode=0 duty=0
+16:25:14.2459 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.2561 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.2659 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.2760 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.2859 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.2958 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.3059 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.3161 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.3259 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.3369 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.3459 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.3559 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.3661 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.3760 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.3859 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.3959 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.4058 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.4159 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.4259 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.4359 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.4458 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.4568 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.4659 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.4759 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.4858 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.4959 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.5059 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.5158 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.5258 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.5360 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.5460 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.5560 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.5658 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.5771 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.5860 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.5959 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.6062 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.6158 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.6259 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.6358 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.6460 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.6564 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.6660 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.6759 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.6858 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.6960 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.7058 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.7160 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.7259 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.7359 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.7459 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.7558 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.7658 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.7763 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.7859 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.7961 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.8058 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.8159 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.8261 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.8359 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.8461 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.8559 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.8658 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.8760 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.8860 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.8962 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.9059 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.9158 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.9258 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.9361 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.9462 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.9559 [ERROR] sysbus: Python runtime error: name 'sysbus' is not defined
+16:25:14.9592 [INFO] f4-bringup: Machine paused.
+16:25:14.9972 [INFO] f4-bringup: Disposed.

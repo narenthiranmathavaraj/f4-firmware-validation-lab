@@ -144,8 +144,5 @@ Renode provides the simulated hardware environment, while the firmware implement
 The automated results therefore validate firmware behaviour against the supported Renode models. Physical hardware testing is still required for electrical characteristics and real-world peripheral timing.
 
 ## Related Documentation
-
-
-- [System Test Matrix](docs/test_matrix.md)
 - [Fault Injection Notes](docs/fault_injection_notes.md)
 - [Automated Robot Framework Tests](docs/automated_system_level_testing.md)

@@ -32,19 +32,12 @@ The system integrates multiple peripherals and real-time software components:
        SPI1           I2C1         Log Formatter
          |              |               |
       LSM6DSO         TMP108        UART TX Buffer
-                                         |
-                                    DMA Transfer
-                                         |
-                                       USART2
-                                         |
-                                    Serial Output
-
-                        |
-                 Thermal Manager
-                        |
-                 Operating Modes
-                        |
-                    TIM2 PWM
+                        |                |
+                 Thermal Manager    DMA Transfer
+                        |                |
+                 Operating Modes       USART2
+                        |                |
+                    TIM2 PWM       Serial Output
                         |
                     Fan Control
 
@@ -125,7 +118,6 @@ Used [Renode](https://renode.io/) to simulate the STM32F4 platform and connected
 For detailed test scenarios, fault-injection procedures, expected results,
 and execution status, see:
 
-- [System Test Matrix](docs/test_matrix.md)
 - [Fault Injection Notes](docs/fault_injection_notes.md)
 - [Automated Robot Framework Tests](docs/automated_system_level_testing.md)
 
@@ -197,7 +189,7 @@ docs/
 | Firmware architecture | Layered drivers, device interfaces, and application tasks |
 | Peripheral access | Direct register-level programming |
 | Task scheduling | Periodic FreeRTOS tasks |
-| Shared data | Mutex-protected sensor state |
+| Shared data | Semaphore-protected sensor state |
 | UART transmission | DMA-based asynchronous TX |
 | Telemetry | Buffered messages and transfer completion handling |
 | Communication errors | Explicit status codes and bounded timeouts |
@@ -264,6 +256,6 @@ Refer to the Makefile and project documentation for the exact commands supported
 
 **Simulation:** Renode
 
-**Testing:** Robot Framework
+**Testing:** Renode-Test
 
 **Development:** ARM GCC, Make, CMake, Git

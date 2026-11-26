@@ -1,0 +1,69 @@
+16:38:54.3424 [INFO] cpu: Setting initial values: PC = 0x800097D, SP = 0x20020000.
+16:38:54.3432 [INFO] f4-bringup: Machine started.
+16:38:54.3886 [WARNING] usart2: Unhandled read from offset 0x14.
+16:38:54.3887 [WARNING] usart2: Unhandled write to offset 0x14, value 0x80.
+16:38:54.3917 [INFO] usart2: [host: 0.22s (+0.22s)|virt: 0.21ms (+0.21ms)] DMA: first message
+16:38:54.3920 [INFO] usart2: [host: 0.22s (+0.25ms)|virt:     0.21ms (+0s)] DMA: second message
+16:38:54.3922 [INFO] usart2: [host: 0.22s (+0.34ms)|virt:     0.21ms (+0s)] DMA: long 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 END
+16:38:54.3923 [INFO] usart2: [host:   0.22s (+89µs)|virt:     0.21ms (+0s)] DMA: self-test done
+16:38:54.4042 [WARNING] timer2: Unhandled write to offset 0x18. Unhandled bits: [3] when writing value 0x68. Tags: OC1PE (0x1).
+16:38:54.4049 [INFO] usart2: [host: 0.24s (+12.54ms)|virt: 0.24ms (+27.08µs)] 
+16:38:54.4049 [INFO] usart2: [host:    0.24s (+97µs)|virt:      0.24ms (+0s)] f4-bringup boot
+16:38:54.4050 [INFO] usart2: [host:    0.24s (+66µs)|virt:      0.24ms (+0s)] BOOT_OK
+16:38:54.4053 [WARNING] gpioPortB: Unhandled write to offset 0x4. Unhandled bits: [6-7] when writing value 0xC0. Tags: OT6 (0x1), OT7 (0x1).
+16:38:54.4075 [INFO] usart2: [host:  0.24s (+2.43ms)|virt:      0.24ms (+0s)] i2c CR1=0x00000001
+16:38:54.4076 [INFO] usart2: [host:  0.24s (+0.12ms)|virt:      0.24ms (+0s)] i2c CR2=0x00000010
+16:38:54.4076 [INFO] usart2: [host:    0.24s (+89µs)|virt:      0.24ms (+0s)] i2c CCR=0x00000050
+16:38:54.4077 [INFO] usart2: [host:    0.24s (+87µs)|virt:      0.24ms (+0s)] i2c TRISE=0x00000011
+16:38:54.4079 [INFO] usart2: [host:  0.24s (+0.13ms)|virt:      0.24ms (+0s)] i2c SR2=0x00000000
+16:38:54.4152 [WARNING] i2c1.tmp108: Unhandled write to offset 0x1. Unhandled bits: [5] when writing value 0x22. Tags: CONF.conv_rate (0x1).
+16:38:54.4156 [WARNING] i2c1.tmp108: Unhandled write to offset 0x1. Unhandled bits: [1] when writing value 0x10. Tags: CONF.mode (0x0).
+16:38:54.4157 [INFO] usart2: [host:  0.25s (+7.86ms)|virt:  0.3ms (+62.11µs)] i2c_init=0x00000000
+16:38:54.4158 [INFO] usart2: [host:   0.25s (+0.1ms)|virt:       0.3ms (+0s)] tmp108_init=0x00000000
+16:38:54.4400 [WARNING] spi1: Slave mode is not supported
+16:38:54.4440 [INFO] usart2: [host: 0.27s (+28.19ms)|virt: 0.31ms (+11.65µs)] spi_init=0x00000000
+16:38:54.4441 [INFO] usart2: [host:  0.27s (+0.12ms)|virt:      0.31ms (+0s)] lsm6dso_init=0x00000000
+16:38:54.4443 [INFO] usart2: [host:  0.27s (+0.11ms)|virt:      0.31ms (+0s)] accel_config=0x00000000
+16:38:54.4445 [INFO] usart2: [host:  0.28s (+0.28ms)|virt:      0.31ms (+0s)] Free heap before mutex: 0
+16:38:54.4454 [INFO] usart2: [host:  0.28s (+0.82ms)|virt:      0.31ms (+0s)] Free heap after mutex: 16296
+16:38:54.4456 [INFO] usart2: [host:   0.28s (+0.2ms)|virt:      0.31ms (+0s)] Free heap before tasks: 16296
+16:38:54.4462 [INFO] usart2: [host:  0.28s (+0.65ms)|virt:  0.4ms (+88.35µs)] Create IMU: 1
+16:38:54.4465 [INFO] usart2: [host:  0.28s (+0.27ms)|virt:       0.4ms (+0s)] Heap remaining: 14656
+16:38:54.4469 [INFO] usart2: [host:   0.28s (+0.4ms)|virt:    0.5ms (+0.1ms)] Create Temperature: 1
+16:38:54.4472 [INFO] usart2: [host:  0.28s (+0.29ms)|virt:       0.5ms (+0s)] Heap remaining: 13016
+16:38:54.4475 [INFO] usart2: [host:  0.28s (+0.36ms)|virt:    0.6ms (+0.1ms)] Create Telemetry: 1
+16:38:54.4478 [INFO] usart2: [host:   0.28s (+0.3ms)|virt:       0.6ms (+0s)] Heap remaining: 11376
+16:38:54.4481 [INFO] usart2: [host:  0.28s (+0.25ms)|virt:    0.7ms (+0.1ms)] Create Health: 1
+16:38:54.4504 [INFO] usart2: [host:  0.28s (+2.22ms)|virt:       0.7ms (+0s)] Heap remaining: 9736
+16:38:54.4505 [INFO] usart2: [host:  0.28s (+0.17ms)|virt:       0.7ms (+0s)] ALL TASKS CREATED
+16:38:54.4506 [INFO] usart2: [host:  0.28s (+0.12ms)|virt:       0.7ms (+0s)] Starting FreeRTOS scheduler
+16:38:54.4597 [WARNING] i2c1: Unhandled write to offset 0x0. Unhandled bits: [11] when writing value 0xC01.
+16:38:54.4613 [WARNING] i2c1: Tried to read from an empty fifo
+16:38:54.4625 [INFO] usart2: [host: 0.29s (+11.89ms)|virt:  0.81ms (+0.11ms)] TEMP valid=1 temp_mC=25000 | IMU valid=1 accel_mg=0,1998,999
+16:38:54.4628 [INFO] usart2: [host:  0.29s (+0.32ms)|virt:      0.81ms (+0s)] thermal mode=0 duty=0
+16:38:55.3455 [WARNING] i2c1: Unhandled write to offset 0x0. Unhandled bits: [11] when writing value 0xC01.
+16:38:55.3456 [WARNING] i2c1: Tried to read from an empty fifo
+16:38:55.3467 [INFO] usart2: [host:   1.18s (+0.88s)|virt:          1s (+1s)] TEMP valid=1 temp_mC=25000 | IMU valid=1 accel_mg=0,1998,999
+16:38:55.3470 [INFO] usart2: [host:  1.18s (+0.34ms)|virt:          1s (+0s)] thermal mode=0 duty=0
+16:38:56.3458 [WARNING] i2c1: Unhandled write to offset 0x0. Unhandled bits: [11] when writing value 0xC01.
+16:38:56.3459 [WARNING] i2c1: Tried to read from an empty fifo
+16:38:56.3469 [INFO] usart2: [host:      2.18s (+1s)|virt:          2s (+1s)] TEMP valid=1 temp_mC=25000 | IMU valid=1 accel_mg=0,1998,999
+16:38:56.3472 [INFO] usart2: [host:  2.18s (+0.34ms)|virt:          2s (+0s)] thermal mode=0 duty=0
+16:38:57.3457 [WARNING] i2c1: Unhandled write to offset 0x0. Unhandled bits: [11] when writing value 0xC01.
+16:38:57.3457 [WARNING] i2c1: Tried to read from an empty fifo
+16:38:57.3467 [INFO] usart2: [host:      3.18s (+1s)|virt:          3s (+1s)] TEMP valid=1 temp_mC=25000 | IMU valid=1 accel_mg=0,1998,999
+16:38:57.3469 [INFO] usart2: [host:  3.18s (+0.22ms)|virt:          3s (+0s)] thermal mode=0 duty=0
+16:38:58.3464 [WARNING] i2c1: Unhandled write to offset 0x0. Unhandled bits: [11] when writing value 0xC01.
+16:38:58.3464 [WARNING] i2c1: Tried to read from an empty fifo
+16:38:58.3475 [INFO] usart2: [host:      4.18s (+1s)|virt:          4s (+1s)] TEMP valid=1 temp_mC=25000 | IMU valid=1 accel_mg=0,1998,999
+16:38:58.3478 [INFO] usart2: [host:  4.18s (+0.33ms)|virt:          4s (+0s)] thermal mode=0 duty=0
+16:38:59.3481 [WARNING] i2c1: Unhandled write to offset 0x0. Unhandled bits: [11] when writing value 0xC01.
+16:38:59.3481 [WARNING] i2c1: Tried to read from an empty fifo
+16:38:59.3492 [INFO] usart2: [host:      5.18s (+1s)|virt:          5s (+1s)] TEMP valid=1 temp_mC=25000 | IMU valid=1 accel_mg=0,1998,999
+16:38:59.3495 [INFO] usart2: [host:  5.18s (+0.34ms)|virt:          5s (+0s)] thermal mode=0 duty=0
+16:39:00.3470 [WARNING] i2c1: Unhandled write to offset 0x0. Unhandled bits: [11] when writing value 0xC01.
+16:39:00.3470 [WARNING] i2c1: Tried to read from an empty fifo
+16:39:00.3481 [INFO] usart2: [host:      6.18s (+1s)|virt:          6s (+1s)] TEMP valid=1 temp_mC=25000 | IMU valid=1 accel_mg=0,1998,999
+16:39:00.3484 [INFO] usart2: [host:  6.18s (+0.34ms)|virt:          6s (+0s)] thermal mode=0 duty=0
+16:39:00.6949 [INFO] f4-bringup: Machine paused.
+16:39:00.7317 [INFO] f4-bringup: Disposed.

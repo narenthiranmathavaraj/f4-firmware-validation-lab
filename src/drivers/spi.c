@@ -226,6 +226,8 @@ status_t spi_transfer(
     cleanup:
 
         // End SPI transaction
+        spi->CR1 &= ~SPI_CR1_SPE;
+        spi->CR1 |=  SPI_CR1_SPE;
         spi_cs_high();
 
         return status;

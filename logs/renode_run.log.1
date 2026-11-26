@@ -1,0 +1,165 @@
+16:14:03.5056 [INFO] cpu: Setting initial values: PC = 0x800097D, SP = 0x20020000.
+16:14:03.5066 [INFO] f4-bringup: Machine started.
+16:14:03.5503 [WARNING] usart2: Unhandled read from offset 0x14.
+16:14:03.5503 [WARNING] usart2: Unhandled write to offset 0x14, value 0x80.
+16:14:03.5534 [INFO] usart2: [host: 0.21s (+0.21s)|virt: 0.21ms (+0.21ms)] DMA: first message
+16:14:03.5537 [INFO] usart2: [host: 0.21s (+0.26ms)|virt:     0.21ms (+0s)] DMA: second message
+16:14:03.5551 [INFO] usart2: [host: 0.21s (+1.47ms)|virt:     0.21ms (+0s)] DMA: long 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 END
+16:14:03.5552 [INFO] usart2: [host: 0.21s (+0.11ms)|virt:     0.21ms (+0s)] DMA: self-test done
+16:14:03.5655 [WARNING] timer2: Unhandled write to offset 0x18. Unhandled bits: [3] when writing value 0x68. Tags: OC1PE (0x1).
+16:14:03.5664 [INFO] usart2: [host: 0.22s (+11.25ms)|virt: 0.24ms (+27.08µs)] 
+16:14:03.5665 [INFO] usart2: [host:   0.22s (+0.1ms)|virt:      0.24ms (+0s)] f4-bringup boot
+16:14:03.5666 [INFO] usart2: [host:    0.22s (+74µs)|virt:      0.24ms (+0s)] BOOT_OK
+16:14:03.5676 [WARNING] gpioPortB: Unhandled write to offset 0x4. Unhandled bits: [6-7] when writing value 0xC0. Tags: OT6 (0x1), OT7 (0x1).
+16:14:03.5698 [INFO] usart2: [host:  0.22s (+3.17ms)|virt:      0.24ms (+0s)] i2c CR1=0x00000001
+16:14:03.5699 [INFO] usart2: [host:    0.22s (+97µs)|virt:      0.24ms (+0s)] i2c CR2=0x00000010
+16:14:03.5699 [INFO] usart2: [host:    0.22s (+84µs)|virt:      0.24ms (+0s)] i2c CCR=0x00000050
+16:14:03.5700 [INFO] usart2: [host:    0.22s (+87µs)|virt:      0.24ms (+0s)] i2c TRISE=0x00000011
+16:14:03.5702 [INFO] usart2: [host:  0.22s (+0.14ms)|virt:      0.24ms (+0s)] i2c SR2=0x00000000
+16:14:03.5771 [WARNING] i2c1.tmp108: Unhandled write to offset 0x1. Unhandled bits: [5] when writing value 0x22. Tags: CONF.conv_rate (0x1).
+16:14:03.5774 [WARNING] i2c1.tmp108: Unhandled write to offset 0x1. Unhandled bits: [1] when writing value 0x10. Tags: CONF.mode (0x0).
+16:14:03.5776 [INFO] usart2: [host:  0.23s (+7.41ms)|virt:  0.3ms (+62.11µs)] i2c_init=0x00000000
+16:14:03.5777 [INFO] usart2: [host:  0.23s (+0.11ms)|virt:       0.3ms (+0s)] tmp108_init=0x00000000
+16:14:03.5784 [WARNING] spi1: Slave mode is not supported
+16:14:03.5815 [INFO] usart2: [host:  0.23s (+3.84ms)|virt:       0.3ms (+0s)] spi_init=0x00000000
+16:14:03.5816 [INFO] usart2: [host:   0.23s (+0.1ms)|virt:       0.3ms (+0s)] lsm6dso_init=0x00000000
+16:14:03.5817 [INFO] usart2: [host:    0.23s (+92µs)|virt:       0.3ms (+0s)] accel_config=0x00000000
+16:14:03.5820 [INFO] usart2: [host:  0.23s (+0.25ms)|virt:       0.3ms (+0s)] Free heap before mutex: 0
+16:14:03.5826 [INFO] usart2: [host:  0.23s (+0.64ms)|virt:       0.3ms (+0s)] Free heap after mutex: 16296
+16:14:03.5828 [INFO] usart2: [host:  0.24s (+0.21ms)|virt:       0.3ms (+0s)] Free heap before tasks: 16296
+16:14:03.5833 [INFO] usart2: [host:  0.24s (+0.46ms)|virt:    0.4ms (+0.1ms)] Create IMU: 1
+16:14:03.5835 [INFO] usart2: [host:  0.24s (+0.18ms)|virt:       0.4ms (+0s)] Heap remaining: 14656
+16:14:03.5837 [INFO] usart2: [host:  0.24s (+0.25ms)|virt:    0.5ms (+0.1ms)] Create Temperature: 1
+16:14:03.5839 [INFO] usart2: [host:  0.24s (+0.16ms)|virt:       0.5ms (+0s)] Heap remaining: 13016
+16:14:03.5841 [INFO] usart2: [host:  0.24s (+0.22ms)|virt:    0.6ms (+0.1ms)] Create Telemetry: 1
+16:14:03.5843 [INFO] usart2: [host:  0.24s (+0.19ms)|virt:       0.6ms (+0s)] Heap remaining: 11376
+16:14:03.5845 [INFO] usart2: [host:  0.24s (+0.26ms)|virt:    0.7ms (+0.1ms)] Create Health: 1
+16:14:03.5847 [INFO] usart2: [host:  0.24s (+0.17ms)|virt:       0.7ms (+0s)] Heap remaining: 9736
+16:14:03.5848 [INFO] usart2: [host:    0.24s (+84µs)|virt:       0.7ms (+0s)] ALL TASKS CREATED
+16:14:03.5849 [INFO] usart2: [host:  0.24s (+0.11ms)|virt:       0.7ms (+0s)] Starting FreeRTOS scheduler
+16:14:03.5907 [WARNING] spi1.imu: Unhandled read from offset 0x13.
+16:14:03.5908 [WARNING] spi1.imu: Unhandled read from offset 0x14.
+16:14:03.5909 [WARNING] spi1.imu: Unhandled read from offset 0x15.
+16:14:03.5909 [WARNING] spi1.imu: Unhandled read from offset 0x16.
+16:14:03.5910 [WARNING] spi1.imu: Unhandled read from offset 0x18.
+16:14:03.5918 [WARNING] i2c1: Unhandled write to offset 0x0. Unhandled bits: [11] when writing value 0xC01.
+16:14:03.5932 [WARNING] i2c1: Tried to read from an empty fifo
+16:14:03.5943 [INFO] usart2: [host:  0.25s (+9.39ms)|virt:  0.81ms (+0.11ms)] TEMP valid=1 temp_mC=25000 | IMU valid=1 accel_mg=0,0,0
+16:14:03.5946 [INFO] usart2: [host:   0.25s (+0.3ms)|virt:      0.81ms (+0s)] thermal mode=0 duty=0
+16:14:03.5987 [WARNING] spi1.imu: Unhandled read from offset 0x19.
+16:14:03.5988 [WARNING] spi1.imu: Unhandled read from offset 0x1A.
+16:14:03.5989 [WARNING] spi1.imu: Unhandled read from offset 0x1B.
+16:14:03.5990 [WARNING] spi1.imu: Unhandled read from offset 0x1C.
+16:14:03.5990 [WARNING] spi1.imu: Unhandled read from offset 0x1D.
+16:14:03.5991 [WARNING] spi1.imu: Unhandled read from offset 0x1E.
+16:14:03.5991 [WARNING] spi1.imu: Unhandled read from offset 0x1F.
+16:14:03.6022 [WARNING] spi1.imu: fifo: No sample found with GyroscopeNC tag
+16:14:03.6023 [WARNING] spi1.imu: fifo: No sample found with GyroscopeNC tag
+16:14:03.6024 [WARNING] spi1.imu: fifo: No sample found with GyroscopeNC tag
+16:14:03.6025 [WARNING] spi1.imu: fifo: No sample found with GyroscopeNC tag
+16:14:03.6026 [WARNING] spi1.imu: fifo: No sample found with GyroscopeNC tag
+16:14:03.6041 [WARNING] spi1.imu: fifo: No sample found with GyroscopeNC tag
+16:14:03.6042 [WARNING] spi1.imu: fifo: No sample found with AccelerometerNC tag
+16:14:03.6043 [WARNING] spi1.imu: fifo: No sample found with AccelerometerNC tag
+16:14:03.6044 [WARNING] spi1.imu: fifo: No sample found with AccelerometerNC tag
+16:14:03.6045 [WARNING] spi1.imu: fifo: No sample found with AccelerometerNC tag
+16:14:03.6045 [WARNING] spi1.imu: fifo: No sample found with AccelerometerNC tag
+16:14:03.6046 [WARNING] spi1.imu: fifo: No sample found with AccelerometerNC tag
+16:14:03.6062 [WARNING] spi1.imu: Unhandled read from offset 0x2E.
+16:14:03.6063 [WARNING] spi1.imu: Unhandled read from offset 0x2F.
+16:14:03.6064 [WARNING] spi1.imu: Unhandled read from offset 0x30.
+16:14:03.6064 [WARNING] spi1.imu: Unhandled read from offset 0x31.
+16:14:03.6065 [WARNING] spi1.imu: Unhandled read from offset 0x32.
+16:14:03.6066 [WARNING] spi1.imu: Unhandled read from offset 0x33.
+16:14:03.6066 [WARNING] spi1.imu: Unhandled read from offset 0x34.
+16:14:03.6082 [WARNING] spi1.imu: Unhandled read from offset 0x35.
+16:14:03.6082 [WARNING] spi1.imu: Unhandled read from offset 0x36.
+16:14:03.6083 [WARNING] spi1.imu: Unhandled read from offset 0x37.
+16:14:03.6084 [WARNING] spi1.imu: Unhandled read from offset 0x38.
+16:14:03.6085 [WARNING] spi1.imu: Unhandled read from offset 0x39.
+16:14:03.6118 [WARNING] spi1.imu: Unhandled read from offset 0x3C.
+16:14:03.6119 [WARNING] spi1.imu: Unhandled read from offset 0x3D.
+16:14:03.6120 [WARNING] spi1.imu: Unhandled read from offset 0x3E.
+16:14:03.6121 [WARNING] spi1.imu: Unhandled read from offset 0x3F.
+16:14:03.6121 [WARNING] spi1.imu: Unhandled read from offset 0x40.
+16:14:03.6122 [WARNING] spi1.imu: Unhandled read from offset 0x41.
+16:14:03.6123 [WARNING] spi1.imu: Unhandled read from offset 0x42.
+16:14:03.6137 [WARNING] spi1.imu: Unhandled read from offset 0x43.
+16:14:03.6138 [WARNING] spi1.imu: Unhandled read from offset 0x44.
+16:14:03.6138 [WARNING] spi1.imu: Unhandled read from offset 0x45.
+16:14:03.6139 [WARNING] spi1.imu: Unhandled read from offset 0x46.
+16:14:03.6140 [WARNING] spi1.imu: Unhandled read from offset 0x47.
+16:14:03.6141 [WARNING] spi1.imu: Unhandled read from offset 0x48.
+16:14:03.6142 [WARNING] spi1.imu: Unhandled read from offset 0x49.
+16:14:03.6155 [WARNING] spi1.imu: Unhandled read from offset 0x4A.
+16:14:03.6156 [WARNING] spi1.imu: Unhandled read from offset 0x4B.
+16:14:03.6157 [WARNING] spi1.imu: Unhandled read from offset 0x4C.
+16:14:03.6158 [WARNING] spi1.imu: Unhandled read from offset 0x4D.
+16:14:03.6158 [WARNING] spi1.imu: Unhandled read from offset 0x4E.
+16:14:03.6159 [WARNING] spi1.imu: Unhandled read from offset 0x4F.
+16:14:03.6160 [WARNING] spi1.imu: Unhandled read from offset 0x50.
+16:14:03.6174 [WARNING] spi1.imu: Unhandled read from offset 0x51.
+16:14:03.6184 [WARNING] spi1.imu: Unhandled read from offset 0x52.
+16:14:03.6185 [WARNING] spi1.imu: Unhandled read from offset 0x53.
+16:14:03.6185 [WARNING] spi1.imu: Unhandled read from offset 0x54.
+16:14:03.6186 [WARNING] spi1.imu: Unhandled read from offset 0x55.
+16:14:03.6187 [WARNING] spi1.imu: Unhandled read from offset 0x56.
+16:14:03.6188 [WARNING] spi1.imu: Unhandled read from offset 0x57.
+16:14:03.6202 [WARNING] spi1.imu: Unhandled read from offset 0x58.
+16:14:03.6202 [WARNING] spi1.imu: Unhandled read from offset 0x59.
+16:14:03.6203 [WARNING] spi1.imu: Unhandled read from offset 0x5A.
+16:14:03.6203 [WARNING] spi1.imu: Unhandled read from offset 0x5B.
+16:14:03.6204 [WARNING] spi1.imu: Unhandled read from offset 0x5C.
+16:14:03.6204 [WARNING] spi1.imu: Unhandled read from offset 0x5D.
+16:14:03.6204 [WARNING] spi1.imu: Unhandled read from offset 0x5E.
+16:14:03.6221 [WARNING] spi1.imu: Unhandled read from offset 0x5F.
+16:14:03.6221 [WARNING] spi1.imu: Unhandled read from offset 0x60.
+16:14:03.6221 [WARNING] spi1.imu: Unhandled read from offset 0x61.
+16:14:03.6222 [WARNING] spi1.imu: Unhandled read from offset 0x62.
+16:14:03.6222 [WARNING] spi1.imu: Unhandled read from offset 0x63.
+16:14:03.6223 [WARNING] spi1.imu: Unhandled read from offset 0x64.
+16:14:03.6223 [WARNING] spi1.imu: Unhandled read from offset 0x65.
+16:14:03.6277 [WARNING] spi1.imu: Unhandled read from offset 0x66.
+16:14:03.6278 [WARNING] spi1.imu: Unhandled read from offset 0x67.
+16:14:03.6278 [WARNING] spi1.imu: Unhandled read from offset 0x68.
+16:14:03.6279 [WARNING] spi1.imu: Unhandled read from offset 0x69.
+16:14:03.6279 [WARNING] spi1.imu: Unhandled read from offset 0x6A.
+16:14:03.6280 [WARNING] spi1.imu: Unhandled read from offset 0x6B.
+16:14:03.6280 [WARNING] spi1.imu: Unhandled read from offset 0x6C.
+16:14:03.6378 [WARNING] spi1.imu: Unhandled read from offset 0x6D.
+16:14:03.6379 [WARNING] spi1.imu: Unhandled read from offset 0x6E.
+16:14:03.6380 [WARNING] spi1.imu: Unhandled read from offset 0x6F.
+16:14:03.6381 [WARNING] spi1.imu: Unhandled read from offset 0x70.
+16:14:03.6381 [WARNING] spi1.imu: Unhandled read from offset 0x71.
+16:14:03.6382 [WARNING] spi1.imu: Unhandled read from offset 0x72.
+16:14:03.6383 [WARNING] spi1.imu: Unhandled read from offset 0x73.
+16:14:03.6479 [WARNING] spi1.imu: Unhandled read from offset 0x74.
+16:14:03.6480 [WARNING] spi1.imu: Unhandled read from offset 0x75.
+16:14:03.6481 [WARNING] spi1.imu: Unhandled read from offset 0x76.
+16:14:03.6481 [WARNING] spi1.imu: Unhandled read from offset 0x77.
+16:14:04.5080 [WARNING] i2c1: Unhandled write to offset 0x0. Unhandled bits: [11] when writing value 0xC01.
+16:14:04.5080 [WARNING] i2c1: Tried to read from an empty fifo
+16:14:04.5088 [INFO] usart2: [host:   1.16s (+0.91s)|virt:          1s (+1s)] TEMP valid=1 temp_mC=25000 | IMU valid=1 accel_mg=0,0,0
+16:14:04.5090 [INFO] usart2: [host:  1.16s (+0.24ms)|virt:          1s (+0s)] thermal mode=0 duty=0
+16:14:05.5085 [WARNING] i2c1: Unhandled write to offset 0x0. Unhandled bits: [11] when writing value 0xC01.
+16:14:05.5085 [WARNING] i2c1: Tried to read from an empty fifo
+16:14:05.5094 [INFO] usart2: [host:      2.16s (+1s)|virt:          2s (+1s)] TEMP valid=1 temp_mC=25000 | IMU valid=1 accel_mg=0,0,0
+16:14:05.5097 [INFO] usart2: [host:  2.16s (+0.29ms)|virt:          2s (+0s)] thermal mode=0 duty=0
+16:14:06.5094 [WARNING] i2c1: Unhandled write to offset 0x0. Unhandled bits: [11] when writing value 0xC01.
+16:14:06.5094 [WARNING] i2c1: Tried to read from an empty fifo
+16:14:06.5102 [INFO] usart2: [host:      3.16s (+1s)|virt:          3s (+1s)] TEMP valid=1 temp_mC=25000 | IMU valid=1 accel_mg=0,0,0
+16:14:06.5104 [INFO] usart2: [host:  3.16s (+0.22ms)|virt:          3s (+0s)] thermal mode=0 duty=0
+16:14:07.5090 [WARNING] i2c1: Unhandled write to offset 0x0. Unhandled bits: [11] when writing value 0xC01.
+16:14:07.5090 [WARNING] i2c1: Tried to read from an empty fifo
+16:14:07.5101 [INFO] usart2: [host:      4.16s (+1s)|virt:          4s (+1s)] TEMP valid=1 temp_mC=25000 | IMU valid=1 accel_mg=0,0,0
+16:14:07.5105 [INFO] usart2: [host:  4.16s (+0.37ms)|virt:          4s (+0s)] thermal mode=0 duty=0
+16:14:08.5091 [WARNING] i2c1: Unhandled write to offset 0x0. Unhandled bits: [11] when writing value 0xC01.
+16:14:08.5091 [WARNING] i2c1: Tried to read from an empty fifo
+16:14:08.5100 [INFO] usart2: [host:      5.16s (+1s)|virt:          5s (+1s)] TEMP valid=1 temp_mC=25000 | IMU valid=1 accel_mg=0,0,0
+16:14:08.5103 [INFO] usart2: [host:  5.16s (+0.27ms)|virt:          5s (+0s)] thermal mode=0 duty=0
+16:14:09.5093 [WARNING] i2c1: Unhandled write to offset 0x0. Unhandled bits: [11] when writing value 0xC01.
+16:14:09.5094 [WARNING] i2c1: Tried to read from an empty fifo
+16:14:09.5104 [INFO] usart2: [host:      6.16s (+1s)|virt:          6s (+1s)] TEMP valid=1 temp_mC=25000 | IMU valid=1 accel_mg=0,0,0
+16:14:09.5106 [INFO] usart2: [host:  6.16s (+0.29ms)|virt:          6s (+0s)] thermal mode=0 duty=0
+16:14:09.6241 [INFO] f4-bringup: Machine paused.
+16:14:09.6684 [INFO] f4-bringup: Disposed.

@@ -529,9 +529,9 @@ int main(void)
     if (imu_status == ERR_OK)
     {
         uint8_t ctrl1_xl[2] = {0x10, 0x40};
-
+        uint8_t dummy[2];
         accel_cfg_status =
-            spi_transfer(&spi1, ctrl1_xl, NULL, 2);
+            spi_transfer(&spi1, ctrl1_xl, dummy, 2);
     }
 
     log_kv("spi_init", (uint32_t)spi_status);

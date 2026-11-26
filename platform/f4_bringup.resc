@@ -1,26 +1,26 @@
-
 :name: f4-bringup
-:description: STM32F4 bring-up firmware
-
 mach create "f4-bringup"
 machine LoadPlatformDescription @/workspaces/f4-bringup/platform/f4_bringup.repl
-#machine LoadPlatformDescription @/workspaces/f4-bringup/platform/f4_no_tmp108.repl
 
 macro f4_bringup.reset
 """
     sysbus LoadELF @/workspaces/f4-bringup/build/f4-bringup.elf
     sysbus.cpu VectorTableOffset 0x08000000
+    sysbus.i2c1.tmp108 Temperature 25
+    sysbus.spi1.imu FeedAccelerationSample 0.5 -0.2 0.98 100000
+    sysbus AddWatchpointHook 0x40020018 DoubleWord Write "if value & 0x10:
 """
 
 sysbus LoadELF @/workspaces/f4-bringup/build/f4-bringup.elf
 sysbus.cpu VectorTableOffset 0x08000000
-
 showAnalyzer sysbus.usart2
-
 machine StartGdbServer 3333
 
-#sysbus.i2c1.tmp108 Temperature 25
+sysbus.i2c1.tmp108 Temperature 25
+sysbus.spi1.imu FeedAccelerationSample 0.5 -0.2 0.98 100000
 logLevel 3 sysbus.i2c1
 logLevel 3 sysbus.spi1.imu
-
+logFile @/workspaces/f4-bringup/logs/renode_run.log
+sysbus AddWatchpointHook 0x40020018 DoubleWord Write "if value & 0x10: monitor.Parse('sysbus.spi1.imu FinishTransmission')"
+#The model never sees CS, so it can't tell where one SPI transaction ends and the next begins. Without FinishTransmission, the model is still in its Read state, with its address pointer past 0x2D
 start
