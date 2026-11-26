@@ -4,7 +4,7 @@ A real-time embedded system built around the STM32F407 (ARM Cortex-M4), demonstr
 
 The project focuses on how multiple hardware peripherals and software tasks work together as a reliable embedded system. It is developed and validated using Renode simulation.
 
-## Video Demonstration [link](https://drive.google.com/file/d/1hlFqXUm4T3r8sK0qLKSPYuDrWtvgeQET/view?usp=sharing)
+## Video Demonstration <a href="https://drive.google.com/file/d/1hlFqXUm4T3r8sK0qLKSPYuDrWtvgeQET/view?usp=sharing" target="_blank" rel="noopener noreferrer">Watch Video Demonstration ↗</a>
 
 
 
